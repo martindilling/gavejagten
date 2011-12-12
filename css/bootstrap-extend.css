@@ -1,0 +1,245 @@
+/* 
+    Document   : bootstrap-extend
+    Created on : 12-12-2011, 01:58:40
+    Author     : Martin Dilling
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/*********************************************
+/* media-grid modification
+/**/	
+
+.media-grid a {
+    display: block;
+    background: #EEE;
+    margin: 0 0 18px 20px;
+    text-align: center;
+}
+.media-grid a:hover {
+    background: #e7e7e7;
+    color: #0253a8;
+    text-decoration: none;
+}
+.media-grid a p {
+    margin: 4px;
+}
+.media-grid .box3 {
+    width: 290px;
+}
+.media-grid .box4 {
+    width: 210px;
+}
+			
+			
+/*********************************************
+/* contentlist
+/**/
+			
+.contentlist {
+    margin: 0 0 18px;
+    padding: 0;
+    list-style: none;
+    zoom: 1;
+}
+.contentlist:before,
+.contentlist:after {
+    display: table;
+    content: "";
+    zoom: 1;
+}
+.contentlist:after {
+    clear: both;
+}
+.contentlist > li {
+    position: relative;
+    margin-bottom: -1px;
+}
+.contentlist > li > a {
+    background-color: #f5f5f5;
+    background-repeat: no-repeat;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#ffffff), to(#f5f5f5));
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #f5f5f5));
+    background-image: -webkit-linear-gradient(top, #ffffff, #f5f5f5);
+    background-image: -moz-linear-gradient(top, #ffffff, #f5f5f5);
+    background-image: -ms-linear-gradient(top, #ffffff, #f5f5f5);
+    background-image: -o-linear-gradient(top, #ffffff, #f5f5f5);
+    background-image: linear-gradient(top, #ffffff, #f5f5f5);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f5f5f5', GradientType=0);
+
+    display: block;
+    color: #808080;
+    padding: 0 15px;
+    margin-right: 0px;
+    margin-bottom: 5px;
+    line-height: 32px;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+    border-radius: 4px 4px 4px 4px;
+}
+.contentlist > li > a:hover {
+    background-color: #efefef;
+    background-repeat: no-repeat;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#ffffff), to(#ececec));
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #ececec));
+    background-image: -webkit-linear-gradient(top, #ffffff, #ececec);
+    background-image: -moz-linear-gradient(top, #ffffff, #ececec);
+    background-image: -ms-linear-gradient(#ffffff, #ececec);
+    background-image: -o-linear-gradient(#ffffff, #ececec);
+    background-image: linear-gradient(#ffffff, #ececec);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ececec', GradientType=0);
+
+    color: #0069D6;
+    text-decoration: none;
+    border-color: #ddd;
+}
+.contentlist .open > a {
+    background-color: #e6e6e6;
+    background-repeat: no-repeat;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#ffffff), to(#e6e6e6));
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #e6e6e6));
+    background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6);
+    background-image: -ms-linear-gradient(#ffffff, #e6e6e6);
+    background-image: -o-linear-gradient(#ffffff, #e6e6e6);
+    background-image: linear-gradient(#ffffff, #e6e6e6);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#e6e6e6', GradientType=0);
+
+    color: #0069D6;
+    border: 1px solid #ddd;
+    border-bottom-color: transparent;
+    margin-bottom: -1px;
+    -webkit-border-radius: 4px 4px 0 0;
+    -moz-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+}
+.contentlist .open > a:hover {
+    background-color: #efefef;
+    background-repeat: no-repeat;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#ffffff), to(#ececec));
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ffffff), color-stop(100%, #ececec));
+    background-image: -webkit-linear-gradient(top, #ffffff, #ececec);
+    background-image: -moz-linear-gradient(top, #ffffff, #ececec);
+    background-image: -ms-linear-gradient(#ffffff, #ececec);
+    background-image: -o-linear-gradient(#ffffff, #ececec);
+    background-image: linear-gradient(#ffffff, #ececec);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ececec', GradientType=0);
+
+    color: #00438a;
+}
+.contentlist > li > a:before {
+    width: 0;
+    height: 0;
+    display: inline-block;
+    content: "&rarr;";
+    text-indent: -99999px;
+    vertical-align: top;
+    margin-top: 12px;
+    margin-right: 5px;
+    border-top: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 4px solid #999;
+    filter: alpha(opacity=50);
+    -khtml-opacity: 0.5;
+    -moz-opacity: 0.5;
+    opacity: 0.5;
+}
+.contentlist .open > a:before {
+    content: "&uarr;";
+    margin-top: 10px;
+    border-left: 4px solid transparent;
+    border-bottom: 4px solid #999;
+}
+.contentlist > li > div {
+    display: none;
+}
+.contentlist .open > div {
+    display: block;
+    background-color: #f8f8f8;
+    padding: 15px;
+    margin-right: 2px;
+    margin-bottom: 15px;
+    line-height: 34px;
+    border: 1px solid #ddd;
+    -webkit-border-radius: 0 0 4px 4px;
+    -moz-border-radius: 0 0 4px 4px;
+    border-radius: 0 0 4px 4px;
+}
+
+
+/*********************************************
+/* toolbar
+/**/
+
+.toolbar {
+  margin: 0px 0px 0px -15px;
+  padding: 0;
+  list-style: none;
+  zoom: 1;
+}
+.toolbar:before,
+.toolbar:after {
+  display: table;
+  content: "";
+  zoom: 1;
+}
+.toolbar:after {
+  clear: both;
+}
+.toolbar > li {
+  float: left;
+  margin-left: 15px;
+}
+.toolbar > li > a {
+  display: block;
+  position: relative;
+}
+
+.toolbar .group > ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  zoom: 1;
+}
+.toolbar .group > ul:before,
+.toolbar .group > ul:after {
+  display: table;
+  content: "";
+  zoom: 1;
+}
+.toolbar .group > ul:after {
+  clear: both;
+}
+.toolbar .group > ul > li {
+  float: left;
+  position: relative;
+}
+.toolbar .group > ul > li > a {
+    display: block;
+    margin-left: -1px;
+    -webkit-border-radius: 0px 0px 0px 0px;
+    -moz-border-radius: 0px 0px 0px 0px;
+    border-radius: 0px 0px 0px 0px;
+}
+.toolbar .group > ul > li > a > img {
+    margin-right: 4px;
+}
+.toolbar .group > ul > li:first-child > a {
+    -webkit-border-radius: 4px 0px 0px 4px;
+    -moz-border-radius: 4px 0px 0px 4px;
+    border-radius: 4px 0px 0px 4px;
+}
+
+.toolbar .group > ul > li:last-child > a {
+    -webkit-border-radius: 0px 4px 4px 0px;
+    -moz-border-radius: 0px 4px 4px 0px;
+    border-radius: 0px 4px 4px 0px;
+}
+
+.toolbar .btn {
+    padding: 8px 15px 8px !important;
+    border-color: #ccc !important;
+    border-bottom-color: #bbb !important;
+}
