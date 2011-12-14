@@ -1,0 +1,54 @@
+/*********************************************
+/* Generel
+/**/
+
+html, 
+body {
+    position: relative;
+    height: 100%;
+    background: #f0f0f0 url('../images/design/bg.png') repeat;
+}
+
+
+/*********************************************
+/* Login
+/**/	
+
+.logincontainer {
+    position: relative;
+    margin: -320px auto;
+    padding: 20px;
+    width: 455px;
+    height: 200px;
+    top: 50%;
+    
+    border: 1px solid #cccccc;
+    -webkit-border-radius:  4px;
+    -moz-border-radius:	    4px;
+    border-radius:	    4px;
+    -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow:	0px 0px 8px rgba(0, 0, 0, 0.1);
+    box-shadow:		0px 0px 8px rgba(0, 0, 0, 0.1);
+    
+    background: #f0f0f0; /* Old browsers */
+    background: -moz-linear-gradient(top,  #f0f0f0 0%, #e0e0e0 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f0f0f0), color-stop(100%,#e0e0e0)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #f0f0f0 0%,#e0e0e0 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #f0f0f0 0%,#e0e0e0 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #f0f0f0 0%,#e0e0e0 100%); /* IE10+ */
+    background: linear-gradient(top,  #f0f0f0 0%,#e0e0e0 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f0f0f0', endColorstr='#e0e0e0',GradientType=0 ); /* IE6-9 */
+}
+.logincontainer h1,
+.logincontainer .loginbtn {
+    text-align: center;
+}
+.logincontainer .loginbtn button {
+    padding: 5px 30px 6px;
+}
+.loginheadline {
+    background: url('../images/design/login_headline.png') no-repeat 0 0;
+    margin: 0 auto;
+    width: 700px;
+    height: 200px;
+}
