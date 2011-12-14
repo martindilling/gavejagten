@@ -9,6 +9,10 @@ body {
     background: #f0f0f0 url('../images/design/bg.png') repeat;
 }
 
+.toppadding {
+    padding-top: 60px;
+}
+
 
 /*********************************************
 /* Login

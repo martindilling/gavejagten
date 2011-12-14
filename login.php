@@ -34,7 +34,7 @@
 		<h1>Login</h1>
 		<form action="#" method="post">
 			<div class="clearfix <?php //echo form_error('username')?'error':''?>">
-				<label for="username">Username:</label>
+				<label for="username">Brugernavn:</label>
 				<div class="input">
 					<input type="text" 
 						   name="username" 

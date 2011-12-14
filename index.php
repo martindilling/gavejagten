@@ -26,9 +26,6 @@
 	<script src="js/bootstrap-extend/contentlist.js"></script>
 </head>
 <body>
-
-<!-- Login box
-================================================== -->
 	<div class="container ">
 		<table class="bordered-table zebra-striped" style="margin-top: 40px">
 			<thead>
@@ -45,7 +42,7 @@
 					<td>Login til adminpanelet</td>
 				</tr>
 				<tr>
-					<td><a href="#" class="btn danger">Goto</a></td>
+					<td><a href="adminpanel.php" class="btn">Goto</a></td>
 					<td>Adminpanel</td>
 					<td>&nbsp;</td>
 				</tr>
