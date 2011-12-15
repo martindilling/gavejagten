@@ -136,7 +136,7 @@
 			<li class="divider">
 				<div>Kommende events</div>				    
 			</li>
-			<li class="yellow">
+			<li class="">
 				<a href="#" class="contentlist-toogle">Find havenisserne<span class="pull-right">01-12-2011 - 24-12-2011</span></a>
 				<div>
 					<p>Some content</p>
@@ -144,7 +144,7 @@
 					<p>Some content</p>
 				</div>
 			</li>
-			<li class="yellow">
+			<li class="">
 				<a href="#" class="contentlist-toogle">Gavejagten 2012<span class="pull-right">01-12-2011 - 24-12-2011</span></a>
 				<div>
 					<p>Some content</p>
@@ -155,7 +155,7 @@
 			<li class="divider">
 				<div>Gamle events</div>				    
 			</li>
-			<li class="">
+			<li class="gray">
 				<a href="#" class="contentlist-toogle">Gavejagten 2010<span class="pull-right">15-12-2010 - 15-12-2010</span></a>
 				<div>
 					<p>Some content</p>
@@ -163,7 +163,7 @@
 					<p>Some content</p>
 				</div>
 			</li>
-			<li class="">
+			<li class="gray">
 				<a href="#" class="contentlist-toogle">Gavejagten 2009<span class="pull-right">15-12-2009 - 15-12-2009</span></a>
 				<div>
 					<p>Some content</p>
@@ -171,7 +171,7 @@
 					<p>Some content</p>
 				</div>
 			</li>
-			<li class="">
+			<li class="gray">
 				<a href="#" class="contentlist-toogle">Første test event<span class="pull-right">07-05-2008 - 07-05-2008</span></a>
 				<div>
 					<p>Some content</p>

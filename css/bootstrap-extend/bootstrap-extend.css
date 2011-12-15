@@ -256,6 +256,34 @@
     border-color: rgba(161, 16, 16, 0.5);
 }
 
+.contentlist > li.gray > a {
+    background-color: #dddddd; /* Old browsers */
+    background-repeat: repeat-x;
+    background-image: -moz-linear-gradient(top,  #eeeeee 0%, #dddddd 100%); /* FF3.6+ */
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#dddddd)); /* Chrome,Safari4+ */
+    background-image: -webkit-linear-gradient(top,  #eeeeee 0%,#dddddd 100%); /* Chrome10+,Safari5.1+ */
+    background-image: -o-linear-gradient(top,  #eeeeee 0%,#dddddd 100%); /* Opera 11.10+ */
+    background-image: -ms-linear-gradient(top,  #eeeeee 0%,#dddddd 100%); /* IE10+ */
+    background-image: linear-gradient(top,  #eeeeee 0%,#dddddd 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#dddddd',GradientType=0 ); /* IE6-9 */
+}
+.contentlist > .open.gray > a {
+    background-color: #dddddd; /* Old browsers */
+    background-repeat: repeat-x;
+    background-image: -moz-linear-gradient(top,  #eeeeee 0%, #dddddd 100%); /* FF3.6+ */
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#dddddd)); /* Chrome,Safari4+ */
+    background-image: -webkit-linear-gradient(top,  #eeeeee 0%,#dddddd 100%); /* Chrome10+,Safari5.1+ */
+    background-image: -o-linear-gradient(top,  #eeeeee 0%,#dddddd 100%); /* Opera 11.10+ */
+    background-image: -ms-linear-gradient(top,  #eeeeee 0%,#dddddd 100%); /* IE10+ */
+    background-image: linear-gradient(top,  #eeeeee 0%,#dddddd 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#dddddd',GradientType=0 ); /* IE6-9 */
+}
+.contentlist > li.gray > a,
+.contentlist > .open.gray > a,
+.contentlist > .open.gray > div {
+    border-color: rgba(204, 204, 204, 0.5);
+}
+
 .contentlist > li > a:hover {
   background-position: 0 -15px;
 }
@@ -269,7 +297,6 @@
     background: -ms-linear-gradient(top,  #eeeeee 0%,#dddddd 100%); /* IE10+ */
     background: linear-gradient(top,  #eeeeee 0%,#dddddd 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#dddddd',GradientType=0 ); /* IE6-9 */
-
 
     display: block;
     color: #999999;
