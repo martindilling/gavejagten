@@ -47,13 +47,13 @@
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
-					<td><a href="#" class="btn danger">Goto</a></td>
-					<td>Event</td>
+					<td><a href="manage_sponsors.php" class="btn">Goto</a></td>
+					<td>Sponsorer</td>
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
-					<td><a href="#" class="btn danger">Goto</a></td>
-					<td>Nyt event</td>
+					<td><a href="show_sponsors.php" class="btn">Goto</a></td>
+					<td>Vis sponsorer</td>
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
