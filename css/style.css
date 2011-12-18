@@ -56,3 +56,13 @@ body {
     width: 700px;
     height: 200px;
 }
+
+
+/*********************************************
+/* Form
+/**/	
+
+select[size] {
+    height: inherit;
+    background-color: white;
+}

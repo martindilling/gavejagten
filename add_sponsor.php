@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Admin - Vis sponsorer</title>
+	<title>Admin - Tilføj sponsor</title>
 	
 	<!-- HTML5 shim, for IE6-8 support of HTML elements -->
 	<!--[if lt IE 9]>
@@ -71,92 +71,70 @@
 	<div class="container toppadding">
 		
 		<div class="page-header">
-			<h1>Admin Panel <small>Small description</small></h1>
+			<h1>Tilføj sponsor <small>Small description</small></h1>
 		</div>
 		
 		<ul class="breadcrumb">
 			<li><a href="#">Panel</a> <span class="divider">/</span></li>
 			<li><a href="#">Gavejagten 2011</a> <span class="divider">/</span></li>
-			<li class="active">Vis sponsorer</li>
+			<li class="active">Tilføj sponsor</li>
 		</ul><!-- /breadcrumb -->
 
-		<div class="well">
-			<ul class="toolbar">
-				<li><a href="#" class="btn success"><img src="images/icons/add.png" height="16" width="16" /> Tilføj sponsor</a></li>
-			</ul><!-- /toolbar -->
-		</div><!-- /well -->
-		
-		<ul class="contentlist" data-contentlist="contentlist">
-			<li class="divider">
-				<div>Sponsorer</div>				    
-			</li>
-			<li class="">
-				<a href="#" class="contentlist-toogle">3 Mobil</a>
-				<div>
-					<div class="well">
-						<ul class="toolbar">
-							<li class="group">
-								<ul>
-									<li><a href="#" class="btn small">Vis rapport</a></li>
-								</ul>
-							</li><!-- /group -->
-							<li class="group right">
-								<ul>
-									<li><a href="#" class="btn small info"><img src="images/icons/edit.png" height="16" width="16" /> Rediger sponsors donation</a></li>
-									<li><a href="#" class="btn small danger"><img src="images/icons/delete.png" height="16" width="16" /> Slet sponsor</a></li>
-								</ul>
-							</li><!-- /group -->
-						</ul><!-- /toolbar -->
-					</div><!-- /well -->
-					
-					<div class="row">
-						<div class="span8">
-							<p><span class="label">Link:</span> <a href="#" target="_blank">$db->url</a></p>
-							<p><span class="label">Beskrivelse:</span> $db->description</p>
-						</div>
-						<div class="span7 force-right">
-							<p><span class="label">Donation pr. pakke:</span> 10 kr</p>
-							<p><span class="label">Pakker doneret:</span> 1000 stk</p>
-							<p><span class="label">Donation ialt:</span> 10.000 kr</p>
-							<p><span class="label">Donations loft:</span> 10.000 kr</p>
-							
-						</div>
-					</div><!-- row -->
+		<form action="#" method="post">
+			<fieldset>
+				
+				<div class="clearfix <?php //echo form_error('sponsor')?'error':''?>">
+					<label for="sponsor">Vælg sponsor:</label>
+					<div class="input">
+						<select class="xlarge" size="10" name="sponsor" id="sponsor">
+							<option>3 Mobil</option>
+							<option>Accessorize</option>
+							<option>Alexandra Blomster</option>
+							<option>Art Shop</option>
+							<option>Bahne</option>
+							<option>Bertoni</option>
+							<option>Bianco Footwear</option>
+							<option>Body Shop</option>
+							<option>Bog & Idé</option>
+							<option>Fætter BR</option>
+							<option>Game Stop</option>
+							<option>Kvikly</option>
+							<option>Stereo Studio</option>
+						</select>
+						<?php //echo form_error('sponsor');?>
+						<br /><a href="new_sponsor.php">Opret ny sponsor</a>
+					</div>
+				</div><!-- /clearfix -->
+				
+				<div class="clearfix <?php //echo form_error('donation_piece')?'error':''?>">
+					<label for="donation_piece">Donation pr. scanning (kr.):</label>
+					<div class="input">
+						<input type="text" 
+							   name="donation_piece" 
+							   id="donation_piece" 
+							   value="<?php //echo set_value('donation_piece'); ?>"
+							   class="xlarge" />
+						<?php //echo form_error('donation_piece');?>
+					</div>
 				</div>
-			</li>
-			<li class="">
-				<a href="#" class="contentlist-toogle">Accessorize</a>
-				<div>
-					<p>Some content</p>
-					<p>Some content</p>
-					<p>Some content</p>
+				<div class="clearfix <?php //echo form_error('donation_max')?'error':''?>">
+					<label for="donation_max">Donations loft (kr.):</label>
+					<div class="input">
+						<input type="text" 
+							   name="donation_max" 
+							   id="donation_max" 
+							   value="<?php //echo set_value('donation_max'); ?>"
+							   class="xlarge" />
+						<?php //echo form_error('donation_max'); ?>
+					</div>
 				</div>
-			</li>
-			<li class="">
-				<a href="#" class="contentlist-toogle">Alexandra Blomster</a>
-				<div>
-					<p>Some content</p>
-					<p>Some content</p>
-					<p>Some content</p>
+				<div class="actions">
+					<button type="submit" name="login" class="btn primary">
+						Tilføj til "Gavejagten 2011"
+					</button>
 				</div>
-			</li>
-			<li class="">
-				<a href="#" class="contentlist-toogle">Art Shop</a>
-				<div>
-					<p>Some content</p>
-					<p>Some content</p>
-					<p>Some content</p>
-				</div>
-			</li>
-			<li class="">
-				<a href="#" class="contentlist-toogle">Bahne</a>
-				<div>
-					<p>Some content</p>
-					<p>Some content</p>
-					<p>Some content</p>
-				</div>
-			</li>
-		</ul><!-- /contentlist -->
+			</fieldset>
+		</form>
 		
 	</div><!-- /container -->	
 </body>

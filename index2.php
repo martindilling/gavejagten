@@ -57,8 +57,8 @@
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
-					<td><a href="#" class="btn danger">Goto</a></td>
-					<td>Sponsorer</td>
+					<td><a href="add_sponsor.php" class="btn">Goto</a></td>
+					<td>Tilføj sponsor</td>
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
