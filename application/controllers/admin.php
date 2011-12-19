@@ -34,33 +34,41 @@ class Admin extends CI_Controller {
 		$this->data['title'] = 'Admin - Login';
 		
 		//validate form input
-		$this->form_validation->set_rules('username', 'Username', 'required');
+		$this->form_validation->set_rules('username', 'Brugernavn', 'required');
 		$this->form_validation->set_rules('password', 'Password', 'required');
-		$this->form_validation->set_error_delimiters('<span class="label important">', '</span>');
+		
+		//sets error message when the field validation fails
+		$this->form_validation->set_message('required', 'skal udfyldes');
+		
+		//sets the tag the error will be enclosed in
+		$this->form_validation->set_error_delimiters('<span class="help-inline">', '</span>');
+		
+		//get username and password from post
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
 
 		if ($this->form_validation->run() == true)
 		{ //check to see if the user is logging in
 
-			if ($this->auth_model->login($this->input->post('username'), $this->input->post('password')))
+			if ($this->auth_model->login($username, $password))
 			{ //if the login is successful
 				//redirect them back to the home page
-				$this->session->set_flashdata('message', 'success logging in');
-				vd::dump($_POST);
-//				redirect(base_url(), 'refresh');
+				$this->session->set_flashdata('message', 'Success logging in');
+				redirect(base_url(), 'refresh');
 			}
 			else
 			{ //if the login was un-successful
 				//redirect them back to the login page
-				$this->session->set_flashdata('error', 'failed logging in');
-				vd::dump($_POST);
+				$this->session->set_flashdata('error', 'Error logging in');
 				redirect('admin/login', 'refresh'); //use redirects instead of loading views for compatibility with MY_Controller libraries
 			}
 		}
 		else
 		{  //the user is not logging in so display the login page
 			//set the flash data error message if there is one
-			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
+			$this->data['error'] = $this->session->flashdata('error');
 
+			//show the login view
 			$this->load->view('snippets/header', $this->data);
 			$this->load->view('pages/login_view', $this->data);
 			$this->load->view('snippets/footer');

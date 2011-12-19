@@ -56,6 +56,11 @@ body {
     width: 700px;
     height: 200px;
 }
+.loginerror {
+    position: absolute;
+    top: -17px;
+    width: 423px; 
+}
 
 
 /*********************************************

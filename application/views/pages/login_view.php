@@ -2,6 +2,10 @@
 ================================================== -->
 <div class="loginheadline"></div>
 <div class="logincontainer">
+	<?php if ($error): ?>
+	<div class="loginerror alert-message error"><p><strong>Fejl i login!</strong> Tjek venligst Brugernavn og Password.</p></div>
+	<?php endif; ?>
+	
 	<h1>Login</h1>
 	<form action="#" method="post">
 		<div class="clearfix <?php echo form_error('username')?'error':''?>">
@@ -32,4 +36,5 @@
 			</button>
 		</div>
 	</form>
+	
 </div><!-- /logincontainer -->
