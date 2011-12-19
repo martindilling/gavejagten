@@ -13,18 +13,20 @@ class Admin extends CI_Controller {
 	
 	private function _view($view, $data) {
 		$this->load->view('snippets/header', $data);
-		//$this->load->view('snippets/menu');
+		$this->load->view('snippets/menu');
+		$this->load->view('snippets/title_breadcrumb');
 		$this->load->view($view, $data);
 		$this->load->view('snippets/footer');
 	}
 
 	public function index() {
 		if (!$this->auth->logged_in()) {
-			//redirect them to the login page
+			//Redirect them to the login page
 			redirect('admin/login', 'refresh');
 		} else {
-			echo "you are logged in";
-//			$this->_view('pages/login_view', $this->data);
+			$this->data['title'] = 'Admin - Panel';
+			//Show the panel view
+			$this->_view('pages/panel_view', $this->data);
 		}
 	}
 	
@@ -34,6 +36,7 @@ class Admin extends CI_Controller {
 		//validate form input
 		$this->form_validation->set_rules('username', 'Username', 'required');
 		$this->form_validation->set_rules('password', 'Password', 'required');
+		$this->form_validation->set_error_delimiters('<span class="label important">', '</span>');
 
 		if ($this->form_validation->run() == true)
 		{ //check to see if the user is logging in
@@ -42,12 +45,14 @@ class Admin extends CI_Controller {
 			{ //if the login is successful
 				//redirect them back to the home page
 				$this->session->set_flashdata('message', 'success logging in');
-				redirect(base_url(), 'refresh');
+				vd::dump($_POST);
+//				redirect(base_url(), 'refresh');
 			}
 			else
 			{ //if the login was un-successful
 				//redirect them back to the login page
-				$this->session->set_flashdata('message', 'failed logging in');
+				$this->session->set_flashdata('error', 'failed logging in');
+				vd::dump($_POST);
 				redirect('admin/login', 'refresh'); //use redirects instead of loading views for compatibility with MY_Controller libraries
 			}
 		}
@@ -56,17 +61,9 @@ class Admin extends CI_Controller {
 			//set the flash data error message if there is one
 			$this->data['message'] = (validation_errors()) ? validation_errors() : $this->session->flashdata('message');
 
-			$this->data['identity'] = array('name' => 'identity',
-				'id' => 'identity',
-				'type' => 'text',
-				'value' => $this->form_validation->set_value('identity'),
-			);
-			$this->data['password'] = array('name' => 'password',
-				'id' => 'password',
-				'type' => 'password',
-			);
-
-			$this->_view('pages/login_view', $this->data);
+			$this->load->view('snippets/header', $this->data);
+			$this->load->view('pages/login_view', $this->data);
+			$this->load->view('snippets/footer');
 		}
 		
 		

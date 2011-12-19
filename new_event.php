@@ -15,7 +15,6 @@
 	<link rel="stylesheet" href="css/datepicker.css" />
 
 	<script src="js/jquery-1.7.1.js"></script>
-	<script src="js/datepicker.js"></script>
 <!--	<script src="js/bootstrap/bootstrap-modal.js"></script>-->
 <!--	<script src="js/bootstrap/bootstrap-alerts.js"></script>-->
 <!--	<script src="js/bootstrap/bootstrap-twipsy.js"></script>-->
@@ -26,14 +25,25 @@
 <!--	<script src="js/bootstrap/bootstrap-buttons.js"></script>-->
 
 	<script src="js/bootstrap-extend/contentlist.js"></script>
+	<script src="js/datepicker.js"></script>
 	<script type="text/javascript">
-$('#event_startdate').DatePicker({
-	flat: true,
-	date: '2008-07-31',
-	current: '2008-07-31',
-	calendars: 1,
-	starts: 1
-});
+		$(document).ready(function() {
+			$('#event_startdate').DatePicker({
+				format:'m/d/Y',
+				date: $('#event_startdate').val(),
+				current: $('#event_startdate').val(),
+				starts: 1,
+				position: 'r',
+				onBeforeShow: function(){
+					$('#event_startdate').DatePickerSetDate($('#event_startdate').val(), true);
+				},
+				onChange: function(formated, dates){
+					$('#event_startdate').val(formated);
+					$('#event_startdate').DatePickerHide();
+					
+				}
+			});
+		});
 	</script>
 </head>
 <body>

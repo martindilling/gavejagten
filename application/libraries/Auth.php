@@ -14,8 +14,7 @@ class Auth
 	{
 //		$this->ci->auth_model->trigger_events('logout');
 
-		$identity = $this->ci->config->item('identity', 'ion_auth');
-		$this->ci->session->unset_userdata($identity);
+		$this->ci->session->unset_userdata('username');
 		$this->ci->session->unset_userdata('id');
 		$this->ci->session->unset_userdata('user_id');
 
@@ -30,8 +29,7 @@ class Auth
 	{
 		$this->ci->auth_model->trigger_events('logout');
 
-		$identity = $this->ci->config->item('identity', 'ion_auth');
-		$this->ci->session->unset_userdata($identity);
+		$this->ci->session->unset_userdata('username');
 		$this->ci->session->unset_userdata('id');
 		$this->ci->session->unset_userdata('user_id');
 
@@ -46,9 +44,8 @@ class Auth
 	{
 //		$this->ci->ion_auth_model->trigger_events('logged_in');
 
-//		$identity = $this->ci->config->item('identity', 'ion_auth');
-		echo "logged_in()";
-		return (bool) $this->ci->session->userdata($username);
+		
+		return (bool) $this->ci->session->userdata('username');
 		
 	}
 
