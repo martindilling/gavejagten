@@ -26,25 +26,7 @@
 
 	<script src="js/bootstrap-extend/contentlist.js"></script>
 	<script src="js/datepicker.js"></script>
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$('#event_startdate').DatePicker({
-				format:'m/d/Y',
-				date: $('#event_startdate').val(),
-				current: $('#event_startdate').val(),
-				starts: 1,
-				position: 'r',
-				onBeforeShow: function(){
-					$('#event_startdate').DatePickerSetDate($('#event_startdate').val(), true);
-				},
-				onChange: function(formated, dates){
-					$('#event_startdate').val(formated);
-					$('#event_startdate').DatePickerHide();
-					
-				}
-			});
-		});
-	</script>
+	<script src="js/script.js"></script>
 </head>
 <body>
 
