@@ -47,6 +47,11 @@
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
+					<td><a href="new_event.php" class="btn">Goto</a></td>
+					<td>Opret event</td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
 					<td><a href="manage_sponsors.php" class="btn">Goto</a></td>
 					<td>Sponsorer</td>
 					<td>&nbsp;</td>
@@ -62,8 +67,8 @@
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
-					<td><a href="#" class="btn danger">Goto</a></td>
-					<td>Ny sponsor</td>
+					<td><a href="new_sponsor.php" class="btn">Goto</a></td>
+					<td>Opret sponsor</td>
 					<td>&nbsp;</td>
 				</tr>
 				<tr>
