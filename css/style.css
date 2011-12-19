@@ -67,6 +67,15 @@ select[size] {
     background-color: white;
 }
 
+.small-date {
+    width: 134px;
+}
+input[readonly].small-date {
+    background-color: #fff;
+    border-color: #ccc;
+    cursor: pointer;
+}
+
 .xlarge-http {
     width: 226px;
 }
