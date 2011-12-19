@@ -66,3 +66,7 @@ select[size] {
     height: inherit;
     background-color: white;
 }
+
+.xlarge-http {
+    width: 226px;
+}
