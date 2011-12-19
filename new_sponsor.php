@@ -82,7 +82,6 @@
 
 		<form action="#" method="post">
 			<fieldset>
-				
 				<div class="clearfix <?php //echo form_error('sponsor_name')?'error':''?>">
 					<label for="sponsor_name">Navn:</label>
 					<div class="input">

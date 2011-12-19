@@ -82,7 +82,6 @@
 
 		<form action="#" method="post">
 			<fieldset>
-				
 				<div class="clearfix <?php //echo form_error('sponsor')?'error':''?>">
 					<label for="sponsor">Vælg sponsor:</label>
 					<div class="input">

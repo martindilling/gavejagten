@@ -21,15 +21,7 @@
 					</li>
 				</ul><!-- /nav -->
 				<ul class="nav secondary-nav">
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle">Dropdown</a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Secondary link</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Another link</a></li>
-						</ul>
-					</li>
+					<li><?php echo anchor('admin/logout', 'Logout') ?></li>
 				</ul>
 			</div><!-- /container-fluid -->
 		</div><!-- /topbar-inner -->

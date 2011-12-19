@@ -11,44 +11,43 @@ class Auth_model extends CI_Model
 	
 	public function login($username, $password)
 	{
-
+		
 	    if (empty($username) || empty($password))
-	    {
-			$this->set_error('login_unsuccessful');
+		{//username or password is empty
+			//failed logging in, return false
 			return FALSE;
 	    }
 
-		
+		//get the data from the admins table, where username match the provided
 	    $query = $this->db->select('id_admin, username, password, email')
 							->from('gj_admins')
 							->where('username', $username)
 							->get();
 		
+		//set the datarow in the user variable
 	    $user = $query->row();
 
 		if ($query->num_rows() == 1)
-	    {
-			//$password = $this->hash_password_db($user->id, $password);
+		{//only got one entry from the db query
+			//encrypt the provided password with SHA1 before comparing to db
+			$password = SHA1($password);
 
 			if ($user->password === $password)
-			{
+			{//password is correct
+				//set username and email in a userdata session
 				$session_data = array(
-					'username'             => $user->username,
-					'email'                => $user->email
-				);
+										'username'	=> $user->username,
+										'email'		=> $user->email
+									);
 
 				$this->session->set_userdata($session_data);
 				
-				
-//				$this->trigger_events(array('post_login', 'post_login_successful'));
-//				$this->set_message('login_successful');
-
+				//succesfully logged in, return true
 				return TRUE;
 			}
 	    }
 
-//		$this->trigger_events('post_login_unsuccessful');
-//		$this->set_error('login_unsuccessful');
+		//failed logging in, return false
 	    return FALSE;
 	}
 }
