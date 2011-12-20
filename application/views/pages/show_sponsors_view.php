@@ -1,3 +1,9 @@
+<div class="well">
+	<ul class="toolbar">
+		<li><?php echo anchor('admin/add_sponsor', '<img src="'. base_url() .'images/icons/add.png" height="16" width="16" /> Tilføj sponsor', array('class' => 'btn success')) ?></li>
+	</ul><!-- /toolbar -->
+</div><!-- /well -->
+
 <ul class="contentlist" data-contentlist="contentlist">
 	<li class="divider">
 		<div>Sponsorer</div>				    
@@ -9,7 +15,7 @@
 				<ul class="toolbar">
 					<li class="group">
 						<ul>
-							<li><a href="#" class="btn small">Vis rapport</a></li>
+							<li><?php echo anchor('admin/show_report', 'Vis rapport', array('class' => 'btn small')) ?></li>
 						</ul>
 					</li><!-- /group -->
 					<li class="group right">

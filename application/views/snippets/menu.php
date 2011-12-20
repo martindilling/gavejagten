@@ -4,22 +4,13 @@
 	<div class="topbar" data-dropdown="dropdown" >
 		<div class="topbar-inner">
 			<div class="container-fluid">
-				<h3><a href="#">Gavejagten</a></h3>
+				<h3><?php echo anchor('', 'Gavejagt') ?></h3>
 				<ul class="nav">
-					<li class="active"><?php echo anchor('admin/adminpanel', 'Panel') ?></li>
-					<li><?php echo anchor('admin/new_event', 'Ny event') ?></li>
-					<li><?php echo anchor('admin/show_sponsors', 'Vis sponsorer') ?></li>
-					<li><?php echo anchor('admin/new_sponsor', 'Ny sponsor') ?></li>
-					<li><?php echo anchor('admin/add_sponsor', 'Tilføj sponsor') ?></li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle">Dropdown</a>
-						<ul class="dropdown-menu">
-							<li><a href="#">Secondary link</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Another link</a></li>
-						</ul>
-					</li>
+					<li<?php echo ($activep == 'adminpanel' ? ' class="active"' : ''); ?>><?php echo anchor('admin/adminpanel', 'Adminpanel') ?></li>
+					<li<?php echo ($activep == 'new_event' ? ' class="active"' : ''); ?>><?php echo anchor('admin/new_event', 'Ny event') ?></li>
+					<li<?php echo ($activep == 'show_sponsors' ? ' class="active"' : ''); ?>><?php echo anchor('admin/show_sponsors', 'Vis sponsorer') ?></li>
+					<li<?php echo ($activep == 'new_sponsor' ? ' class="active"' : ''); ?>><?php echo anchor('admin/new_sponsor', 'Ny sponsor') ?></li>
+					<li<?php echo ($activep == 'add_sponsor' ? ' class="active"' : ''); ?>><?php echo anchor('admin/add_sponsor', 'Tilføj sponsor') ?></li>
 				</ul><!-- /nav -->
 				<ul class="nav secondary-nav">
 					<li><?php echo anchor('admin/logout', 'Logout') ?></li>

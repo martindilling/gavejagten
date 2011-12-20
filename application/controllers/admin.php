@@ -112,6 +112,9 @@ class Admin extends CI_Controller
 		//set breadcrumbs
 		$this->data['breadcrumbs'] = array('Adminpanel' => 'admin/adminpanel');
 
+		//set activepage
+		$this->data['activep'] = 'adminpanel';
+		
 		//Show the panel view
 		$this->_view('pages/panel_view', $this->data);
 	}
@@ -129,6 +132,9 @@ class Admin extends CI_Controller
 		//set breadcrumbs
 		$this->data['breadcrumbs'] = array('Adminpanel' => 'admin/adminpanel', 'Ny event' => 'admin/new_event');
 
+		//set activepage
+		$this->data['activep'] = 'new_event';
+		
 		//Show the panel view
 		$this->_view('pages/new_event_view', $this->data);
 	}
@@ -139,13 +145,16 @@ class Admin extends CI_Controller
 		$this->_is_logged_in();
 		
 		//set page title, headline and subheadline
-		$this->data['title'] = 'Adminpanel - Vis sponsorer';
+		$this->data['title'] = 'Adminpanel - _event - Vis sponsorer';
 		$this->data['headline'] = 'Vis sponsorer';
 		$this->data['subheadline'] = 'kort beskrivelse af "Vis sponsorer" siden';
 		
 		//set breadcrumbs
-		$this->data['breadcrumbs'] = array('Adminpanel' => 'admin/adminpanel', 'Vis sponsorer' => 'admin/show_sponsors');
+		$this->data['breadcrumbs'] = array('Adminpanel' => 'admin/adminpanel', '_event' => 'admin/adminpanel', 'Vis sponsorer' => 'admin/show_sponsors');
 
+		//set activepage
+		$this->data['activep'] = 'show_sponsors';
+		
 		//Show the panel view
 		$this->_view('pages/show_sponsors_view', $this->data);
 	}
@@ -163,6 +172,9 @@ class Admin extends CI_Controller
 		//set breadcrumbs
 		$this->data['breadcrumbs'] = array('Adminpanel' => 'admin/adminpanel', 'Ny sponsor' => 'admin/new_sponsor');
 
+		//set activepage
+		$this->data['activep'] = 'new_sponsor';
+		
 		//Show the panel view
 		$this->_view('pages/new_sponsor_view', $this->data);
 	}
@@ -176,6 +188,9 @@ class Admin extends CI_Controller
 		$this->data['title'] = 'Adminpanel - _event - Tilføj sponsor';
 		$this->data['headline'] = 'Tilføj sponsor';
 		$this->data['subheadline'] = 'kort beskrivelse af "Tilføj sponsor" siden';
+		
+		//set activepage
+		$this->data['activep'] = 'add_sponsor';
 		
 		//set breadcrumbs
 		$this->data['breadcrumbs'] = array('Adminpanel' => 'admin/adminpanel', '_event' => 'admin/adminpanel', 'Tilføj sponsor' => 'admin/add_sponsor');

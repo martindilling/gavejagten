@@ -1,6 +1,6 @@
 	<div class="well">
 		<ul class="toolbar">
-			<li><a href="#" class="btn success"><img src="<?php echo base_url() ?>images/icons/add.png" height="16" width="16" /> Nyt event</a></li>
+			<li><?php echo anchor('admin/new_event', '<img src="'. base_url() .'images/icons/add.png" height="16" width="16" /> Nyt event', array('class' => 'btn success')) ?></li>
 		</ul><!-- /toolbar -->
 	</div><!-- /well -->
 
@@ -15,9 +15,8 @@
 					<ul class="toolbar">
 						<li class="group">
 							<ul>
-								<li><a href="#" class="btn small">Vis sponsorer</a></li>
-								<li><a href="#" class="btn small">Vis donationer</a></li>
-								<li><a href="#" class="btn small">Vis rapport</a></li>
+								<li><?php echo anchor('admin/show_sponsors', 'Vis sponsorer', array('class' => 'btn small')) ?></li>
+								<li><?php echo anchor('admin/show_report', 'Vis rapport', array('class' => 'btn small')) ?></li>
 							</ul>
 						</li><!-- /group -->
 						<li class="group right">
