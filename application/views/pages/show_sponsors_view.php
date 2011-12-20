@@ -14,8 +14,8 @@
 					</li><!-- /group -->
 					<li class="group right">
 						<ul>
-							<li><a href="#" class="btn small info"><img src="images/icons/edit.png" height="16" width="16" /> Rediger sponsors donation</a></li>
-							<li><a href="#" class="btn small danger"><img src="images/icons/delete.png" height="16" width="16" /> Slet sponsor</a></li>
+							<li><a href="#" class="btn small info"><img src="<?php echo base_url() ?>images/icons/edit.png" height="16" width="16" /> Rediger sponsors donation</a></li>
+							<li><a href="#" class="btn small danger"><img src="<?php echo base_url() ?>images/icons/delete.png" height="16" width="16" /> Slet sponsor</a></li>
 						</ul>
 					</li><!-- /group -->
 				</ul><!-- /toolbar -->

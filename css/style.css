@@ -84,3 +84,7 @@ input[readonly].small-date {
 .xlarge-http {
     width: 226px;
 }
+
+.input-file {
+    width: 278px;
+}

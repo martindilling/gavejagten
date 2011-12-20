@@ -1,6 +1,6 @@
 	<div class="well">
 		<ul class="toolbar">
-			<li><a href="#" class="btn success"><img src="images/icons/add.png" height="16" width="16" /> Nyt event</a></li>
+			<li><a href="#" class="btn success"><img src="<?php echo base_url() ?>images/icons/add.png" height="16" width="16" /> Nyt event</a></li>
 		</ul><!-- /toolbar -->
 	</div><!-- /well -->
 
@@ -22,8 +22,8 @@
 						</li><!-- /group -->
 						<li class="group right">
 							<ul>
-								<li><a href="#" class="btn small info"><img src="images/icons/edit.png" height="16" width="16" /> Rediger event</a></li>
-								<li><a href="#" class="btn small danger"><img src="images/icons/delete.png" height="16" width="16" /> Slet event</a></li>
+								<li><a href="#" class="btn small info"><img src="<?php echo base_url() ?>images/icons/edit.png" height="16" width="16" /> Rediger event</a></li>
+								<li><a href="#" class="btn small danger"><img src="<?php echo base_url() ?>images/icons/delete.png" height="16" width="16" /> Slet event</a></li>
 							</ul>
 						</li><!-- /group -->
 					</ul><!-- /toolbar -->

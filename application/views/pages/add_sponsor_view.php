@@ -19,7 +19,7 @@
 					<option>Stereo Studio</option>
 				</select>
 				<?php //echo form_error('sponsor');?>
-				<br /><a href="new_sponsor.php">Opret ny sponsor</a>
+				<br /><?php echo anchor('admin/new_sponsor', 'Opret ny sponsor') ?>
 			</div>
 		</div><!-- /clearfix -->
 
@@ -47,7 +47,7 @@
 		</div>
 		<div class="actions">
 			<button type="submit" name="login" class="btn primary">
-				Tilføj til "Gavejagten 2011"
+				Tilføj til "-event"
 			</button>
 		</div>
 	</fieldset>

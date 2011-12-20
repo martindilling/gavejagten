@@ -19,22 +19,22 @@ class Admin extends CI_Controller
 		$this->load->view($view, $data);
 		$this->load->view('snippets/footer');
 	}
-
-	public function index()
-	{
+	
+	private function _is_logged_in() {
 		if (!$this->auth->logged_in())
 		{//user is not logged in
 			//redirect them to the login page
 			redirect('admin/login', 'refresh');
 		}
-		else
-		{//user is logged in
-			//set page title
-			$this->data['title'] = 'Admin - Panel';
-			
-			//Show the panel view
-			$this->_view('pages/panel_view', $this->data);
-		}
+	}
+
+	public function index()
+	{
+		//redirect to login if not logged in
+		$this->_is_logged_in();
+		
+		//redirect to the adminpanel
+		redirect('admin/adminpanel', 'refresh');
 	}
 	
 	public function login()
@@ -98,5 +98,92 @@ class Admin extends CI_Controller
 		//redirect them back to the home page
 		redirect(base_url(), 'refresh');
 	}
+	
+	public function adminpanel()
+	{
+		//redirect to login if not logged in
+		$this->_is_logged_in();
+		
+		//set page title, headline and subheadline
+		$this->data['title'] = 'Adminpanel';
+		$this->data['headline'] = 'Adminpanel';
+		$this->data['subheadline'] = 'kort beskrivelse af "Adminpanel" siden';
+		
+		//set breadcrumbs
+		$this->data['breadcrumbs'] = array('Adminpanel' => 'admin/adminpanel');
+
+		//Show the panel view
+		$this->_view('pages/panel_view', $this->data);
+	}
+	
+	public function new_event()
+	{
+		//redirect to login if not logged in
+		$this->_is_logged_in();
+		
+		//set page title, headline and subheadline
+		$this->data['title'] = 'Adminpanel - Ny event';
+		$this->data['headline'] = 'Ny event';
+		$this->data['subheadline'] = 'kort beskrivelse af "Ny event" siden';
+		
+		//set breadcrumbs
+		$this->data['breadcrumbs'] = array('Adminpanel' => 'admin/adminpanel', 'Ny event' => 'admin/new_event');
+
+		//Show the panel view
+		$this->_view('pages/new_event_view', $this->data);
+	}
+	
+	public function show_sponsors()
+	{
+		//redirect to login if not logged in
+		$this->_is_logged_in();
+		
+		//set page title, headline and subheadline
+		$this->data['title'] = 'Adminpanel - Vis sponsorer';
+		$this->data['headline'] = 'Vis sponsorer';
+		$this->data['subheadline'] = 'kort beskrivelse af "Vis sponsorer" siden';
+		
+		//set breadcrumbs
+		$this->data['breadcrumbs'] = array('Adminpanel' => 'admin/adminpanel', 'Vis sponsorer' => 'admin/show_sponsors');
+
+		//Show the panel view
+		$this->_view('pages/show_sponsors_view', $this->data);
+	}
+	
+	public function new_sponsor()
+	{
+		//redirect to login if not logged in
+		$this->_is_logged_in();
+		
+		//set page title, headline and subheadline
+		$this->data['title'] = 'Adminpanel - Ny sponsor';
+		$this->data['headline'] = 'Ny sponsor';
+		$this->data['subheadline'] = 'kort beskrivelse af "Ny sponsor" siden';
+		
+		//set breadcrumbs
+		$this->data['breadcrumbs'] = array('Adminpanel' => 'admin/adminpanel', 'Ny sponsor' => 'admin/new_sponsor');
+
+		//Show the panel view
+		$this->_view('pages/new_sponsor_view', $this->data);
+	}
+	
+	public function add_sponsor()
+	{
+		//redirect to login if not logged in
+		$this->_is_logged_in();
+		
+		//set page title, headline and subheadline
+		$this->data['title'] = 'Adminpanel - _event - Tilføj sponsor';
+		$this->data['headline'] = 'Tilføj sponsor';
+		$this->data['subheadline'] = 'kort beskrivelse af "Tilføj sponsor" siden';
+		
+		//set breadcrumbs
+		$this->data['breadcrumbs'] = array('Adminpanel' => 'admin/adminpanel', '_event' => 'admin/adminpanel', 'Tilføj sponsor' => 'admin/add_sponsor');
+
+		//Show the panel view
+		$this->_view('pages/add_sponsor_view', $this->data);
+	}
+	
+	
 
 }
