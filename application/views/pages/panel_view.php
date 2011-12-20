@@ -31,7 +31,7 @@
 					</div><!-- /well -->
 
 					<p><span class="label">Placering:</span> <?php echo $key['place'] ?></p>
-					<p><span class="label">Arrangør:</span> <?php echo $key['organizer'] ?></p>
+					<p><span class="label">ArrangÃ¸r:</span> <?php echo $key['organizer'] ?></p>
 					<p><span class="label">Beskrivelse:</span> <?php echo $key['description'] ?></p>
 				</div>
 			</li>
@@ -64,7 +64,7 @@
 					</div><!-- /well -->
 
 					<p><span class="label">Placering:</span> <?php echo $key['place'] ?></p>
-					<p><span class="label">Arrangør:</span> <?php echo $key['organizer'] ?></p>
+					<p><span class="label">ArrangÃ¸r:</span> <?php echo $key['organizer'] ?></p>
 					<p><span class="label">Beskrivelse:</span> <?php echo $key['description'] ?></p>
 				</div>
 			</li>
@@ -97,7 +97,7 @@
 					</div><!-- /well -->
 
 					<p><span class="label">Placering:</span> <?php echo $key['place'] ?></p>
-					<p><span class="label">Arrangør:</span> <?php echo $key['organizer'] ?></p>
+					<p><span class="label">ArrangÃ¸r:</span> <?php echo $key['organizer'] ?></p>
 					<p><span class="label">Beskrivelse:</span> <?php echo $key['description'] ?></p>
 				</div>
 			</li>
