@@ -88,3 +88,35 @@ input[readonly].small-date {
 .input-file {
     width: 278px;
 }
+
+
+/*********************************************
+/* Details
+/**/
+
+
+.infolist {
+    float: left;
+    width: 50%;
+}
+
+.infolist:before,
+.infolist:after {
+    display: table;
+    content: "";
+    zoom: 1;
+}
+
+.infolist > div {
+    float: left;
+    width: 100px;
+    line-height: 18px;
+    margin-bottom:9px;
+    clear: both;
+}
+
+.infolist > span {
+    float: left;
+    line-height: 18px;
+    margin-bottom: 9px;
+}
