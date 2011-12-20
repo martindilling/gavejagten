@@ -62,14 +62,14 @@ class Admin extends CI_Controller
 			if ($this->auth_model->login($username, $password))
 			{//if the login is successful
 				//set flashdata, just in case
-				$this->session->set_flashdata('message', 'Success logging in');
+				$this->session->set_flashdata('message', 'Logget ind');
 				//redirect them back to the home page
 				redirect(base_url(), 'refresh');
 			}
 			else
 			{//if the login was un-successful
 				//set flashdata, just in case
-				$this->session->set_flashdata('error', 'Error logging in');
+				$this->session->set_flashdata('error', 'Fejl under login');
 				//redirect them back to the login page
 				redirect('admin/login', 'refresh');
 			}
@@ -105,9 +105,9 @@ class Admin extends CI_Controller
 		$this->_is_logged_in();
 		
 		//set page title, headline and subheadline
-		$this->data['title'] = 'Adminpanel';
-		$this->data['headline'] = 'Adminpanel';
-		$this->data['subheadline'] = 'kort beskrivelse af "Adminpanel" siden';
+		$this->data['title'] = 'Adminpanel - Event Oversigt';
+		$this->data['headline'] = 'Events';
+		$this->data['subheadline'] = 'oversigt over events';
 		
 		//set breadcrumbs
 		$this->data['breadcrumbs'] = array('Adminpanel' => 'admin/adminpanel');
@@ -127,7 +127,7 @@ class Admin extends CI_Controller
 		//set page title, headline and subheadline
 		$this->data['title'] = 'Adminpanel - Ny event';
 		$this->data['headline'] = 'Ny event';
-		$this->data['subheadline'] = 'kort beskrivelse af "Ny event" siden';
+		$this->data['subheadline'] = 'opret en ny event';
 		
 		//set breadcrumbs
 		$this->data['breadcrumbs'] = array('Adminpanel' => 'admin/adminpanel', 'Ny event' => 'admin/new_event');
@@ -147,7 +147,7 @@ class Admin extends CI_Controller
 		//set page title, headline and subheadline
 		$this->data['title'] = 'Adminpanel - _event - Vis sponsorer';
 		$this->data['headline'] = 'Vis sponsorer';
-		$this->data['subheadline'] = 'kort beskrivelse af "Vis sponsorer" siden';
+		$this->data['subheadline'] = 'oversigt over sponsorer for event';
 		
 		//set breadcrumbs
 		$this->data['breadcrumbs'] = array('Adminpanel' => 'admin/adminpanel', '_event' => 'admin/adminpanel', 'Vis sponsorer' => 'admin/show_sponsors');
@@ -167,7 +167,7 @@ class Admin extends CI_Controller
 		//set page title, headline and subheadline
 		$this->data['title'] = 'Adminpanel - Ny sponsor';
 		$this->data['headline'] = 'Ny sponsor';
-		$this->data['subheadline'] = 'kort beskrivelse af "Ny sponsor" siden';
+		$this->data['subheadline'] = 'opret en ny sponsor';
 		
 		//set breadcrumbs
 		$this->data['breadcrumbs'] = array('Adminpanel' => 'admin/adminpanel', 'Ny sponsor' => 'admin/new_sponsor');
@@ -187,7 +187,7 @@ class Admin extends CI_Controller
 		//set page title, headline and subheadline
 		$this->data['title'] = 'Adminpanel - _event - Tilføj sponsor';
 		$this->data['headline'] = 'Tilføj sponsor';
-		$this->data['subheadline'] = 'kort beskrivelse af "Tilføj sponsor" siden';
+		$this->data['subheadline'] = 'tilføj en sponsor til event';
 		
 		//set activepage
 		$this->data['activep'] = 'add_sponsor';
