@@ -4,7 +4,7 @@
 	<div class="topbar" data-dropdown="dropdown" >
 		<div class="topbar-inner">
 			<div class="container-fluid">
-				<h3><?php echo anchor('', 'Gavejagt') ?></h3>
+				<h3><?php echo anchor('', 'EventAdmin') ?></h3>
 				<ul class="nav">
 					<li<?php echo ($activep == 'adminpanel' ? ' class="active"' : ''); ?>><?php echo anchor('admin/adminpanel', 'Adminpanel') ?></li>
 					<li<?php echo ($activep == 'new_event' ? ' class="active"' : ''); ?>><?php echo anchor('admin/new_event', 'Ny event') ?></li>

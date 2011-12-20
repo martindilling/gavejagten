@@ -83,7 +83,7 @@
 
 		<div class="well">
 			<ul class="toolbar">
-				<li><a href="#" class="btn success"><img src="images/icons/add.png" height="16" width="16" /> Nyt event</a></li>
+				<li><a href="#" class="btn success"><img src="images/icons/add.png" height="16" width="16" /> Ny event</a></li>
 			</ul><!-- /toolbar -->
 		</div><!-- /well -->
 		
@@ -92,7 +92,7 @@
 				<div>Aktive events</div>				    
 			</li>
 			<li class="green">
-				<a href="#" class="contentlist-toogle">Gavejagten 2011<span class="pull-right">15-12-2011 - 15-12-2011</span></a>
+				<a href="#" class="contentlist-toogle">Gavejagten 2011<span class="pull-right">15-12-2011</span></a>
 				<div>
 					<div class="well">
 						<ul class="toolbar">
@@ -111,10 +111,24 @@
 							</li><!-- /group -->
 						</ul><!-- /toolbar -->
 					</div><!-- /well -->
-					
-					<p><span class="label">Placering:</span> Bruun's Galleri - Århus</p>
-					<p><span class="label">Arrangør:</span> Bruun's Galleri - Århus</p>
-					<p><span class="label">Beskrivelse:</span> Beskrivelse</p>
+					<div class="infolist">
+						<div><span class="label">Placering:</span></div>
+						<span>Bruun's Galleri - Århus</span>
+
+						<div><span class="label">Arrangør:</span></div>
+						<span>Bruun's Galleri - Århus</span>
+
+						<div><span class="label">Beskrivelse:</span></div>
+						<span>Dette er en beskrivelse af eventen.</span>
+					</div>
+					<div class="infolist">
+						<div><span class="label">Event start:</span></div>
+						<span>15-12-2011 10:00</span>
+
+						<div><span class="label">Event slut:</span></div>
+						<span>15-12-2011 20:00</span>
+					</div>
+					<div style="clear:both;"></div>
 				</div>
 			</li>
 			<li class="green">
