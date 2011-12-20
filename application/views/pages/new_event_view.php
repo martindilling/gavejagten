@@ -1,29 +1,28 @@
 <form action="#" method="post">
 	<fieldset>
-		<div class="clearfix <?php //echo form_error('event_name')?'error':''?>">
+		<div class="clearfix <?php echo form_error('event_name')?'error':''?>">
 			<label for="event_name">Navn:</label>
 			<div class="input">
 				<input type="text" 
 					   name="event_name" 
 					   id="event_name" 
-					   value="<?php //echo set_value('event_name'); ?>"
+					   value="<?php echo set_value('event_name'); ?>"
 					   class="xlarge" />
-				<?php //echo form_error('event_name');?>
+				<?php echo form_error('event_name');?>
 			</div>
 		</div>
-		<div class="clearfix <?php //echo form_error('event_startdate')?'error':''?>">
+		<div class="clearfix <?php echo form_error('event_startdate')?'error':''?>">
 			<label for="event_startdate">Start dato / tid:</label>
 			<div class="input">
 				<input type="text" 
 					   name="event_startdate" 
 					   id="event_startdate"
-					   value="<?php //echo set_value('event_startdate'); ?>"
+					   value="<?php echo set_value('event_startdate'); ?>"
 					   maxlength="10"
 					   readonly="readonly"
-					   class="small-date" />
-				<?php //echo form_error('event_startdate');?>
+					   class="small-date" />				
 
-				<select class="mini" name="event_start-hour" id="event_start-hour">
+				<select class="mini" name="event_start_hour" id="event_start_hour">
 					<option>00</option>
 					<option>01</option>
 					<option>02</option>
@@ -50,7 +49,7 @@
 					<option>23</option>
 				</select>
 				<span>:</span>
-				<select class="mini" name="event_start-min" id="event_start-min">
+				<select class="mini" name="event_start_min" id="event_start_min">
 					<option>00</option>
 					<option>01</option>
 					<option>02</option>
@@ -112,21 +111,22 @@
 					<option>58</option>
 					<option>59</option>
 				</select>
+				
+				<?php echo form_error('event_startdate');?>
 			</div>
 		</div>
-		<div class="clearfix <?php //echo form_error('event_enddate')?'error':''?>">
+		<div class="clearfix <?php echo form_error('event_enddate')?'error':''?>">
 			<label for="event_enddate">Slut dato / tid:</label>
 			<div class="input">
 				<input type="text" 
 					   name="event_enddate" 
 					   id="event_enddate"
-					   value="<?php //echo set_value('event_enddate'); ?>"
+					   value="<?php echo set_value('event_enddate'); ?>"
 					   maxlength="10"
 					   readonly="readonly"
 					   class="small-date" />
-				<?php //echo form_error('event_enddate');?>
 
-				<select class="mini" name="event_start-hour" id="event_end-hour">
+				<select class="mini" name="event_end_hour" id="event_end_hour">
 					<option>00</option>
 					<option>01</option>
 					<option>02</option>
@@ -153,7 +153,7 @@
 					<option>23</option>
 				</select>
 				<span>:</span>
-				<select class="mini" name="event_start-min" id="event_start-min">
+				<select class="mini" name="event_end_min" id="event_end_min">
 					<option>00</option>
 					<option>01</option>
 					<option>02</option>
@@ -215,31 +215,33 @@
 					<option>58</option>
 					<option>59</option>
 				</select>
+				
+				<?php echo form_error('event_enddate');?>
 			</div>
 		</div>
-		<div class="clearfix <?php //echo form_error('event_place')?'error':''?>">
+		<div class="clearfix <?php echo form_error('event_place')?'error':''?>">
 			<label for="event_place">Sted:</label>
 			<div class="input">
 				<input type="text" 
 					   name="event_place" 
 					   id="event_place" 
-					   value="<?php //echo set_value('event_place'); ?>"
+					   value="<?php echo set_value('event_place'); ?>"
 					   class="xlarge" />
-				<?php //echo form_error('event_place');?>
+				<?php echo form_error('event_place');?>
 			</div>
 		</div>
-		<div class="clearfix <?php //echo form_error('event_organizer')?'error':''?>">
+		<div class="clearfix <?php echo form_error('event_organizer')?'error':''?>">
 			<label for="event_organizer">Arrangør:</label>
 			<div class="input">
 				<input type="text" 
 					   name="event_organizer" 
 					   id="event_organizer" 
-					   value="<?php //echo set_value('event_organizer'); ?>"
+					   value="<?php echo set_value('event_organizer'); ?>"
 					   class="xlarge" />
-				<?php //echo form_error('event_organizer');?>
+				<?php echo form_error('event_organizer');?>
 			</div>
 		</div>
-		<div class="clearfix <?php //echo form_error('event_description')?'error':''?>">
+		<div class="clearfix <?php echo form_error('event_description')?'error':''?>">
 			<label for="event_description">Beskrivelse:</label>
 			<div class="input">
 				<textarea name="event_description"
@@ -247,8 +249,8 @@
 					   rows="7"
 					   maxlength="256"
 					   class="xlarge"
-					   style="resize: none;"><?php //echo set_value('event_description'); ?></textarea>
-				<?php //echo form_error('event_description'); ?>
+					   style="resize: none;"><?php echo set_value('event_description'); ?></textarea>
+				<?php echo form_error('event_description'); ?>
 			</div>
 		</div>
 

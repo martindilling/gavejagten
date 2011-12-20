@@ -11,7 +11,7 @@
 		<?php foreach($events['active'] as $key): ?>
 
 			<li class="green">
-				<a href="#" class="contentlist-toogle"><?php echo $key['name'] ?><span class="pull-right"><?php echo $key['start_time'] ?> - <?php echo $key['end_time'] ?></span></a>
+				<a href="#" class="contentlist-toogle"><?php echo $key['name'] ?><span class="pull-right"><?php echo $key['start_date'] ?> - <?php echo $key['end_date'] ?></span></a>
 				<div>
 					<div class="well">
 						<ul class="toolbar">
@@ -29,10 +29,25 @@
 							</li><!-- /group -->
 						</ul><!-- /toolbar -->
 					</div><!-- /well -->
+					
+					<div class="infolist">
+						<div><span class="label">Placering:</span></div>
+						<span><?php echo $key['place'] ?></span>
 
-					<p><span class="label">Placering:</span> <?php echo $key['place'] ?></p>
-					<p><span class="label">Arrangør:</span> <?php echo $key['organizer'] ?></p>
-					<p><span class="label">Beskrivelse:</span> <?php echo $key['description'] ?></p>
+						<div><span class="label">Arrangør:</span></div>
+						<span><?php echo $key['organizer'] ?></span>
+
+						<div><span class="label">Beskrivelse:</span></div>
+						<span><?php echo $key['description'] ?></span>
+					</div>
+					<div class="infolist">
+						<div><span class="label">Event start:</span></div>
+						<span><?php echo $key['start_date'] ?> <?php echo $key['start_time'] ?></span>
+
+						<div><span class="label">Event slut:</span></div>
+						<span><?php echo $key['end_date'] ?> <?php echo $key['end_time'] ?></span>
+					</div>
+					<div style="clear:both;"></div>
 				</div>
 			</li>
 		
@@ -44,7 +59,7 @@
 		<?php foreach($events['future'] as $key): ?>
 
 			<li class="">
-				<a href="#" class="contentlist-toogle"><?php echo $key['name'] ?><span class="pull-right"><?php echo $key['start_time'] ?> - <?php echo $key['end_time'] ?></span></a>
+				<a href="#" class="contentlist-toogle"><?php echo $key['name'] ?><span class="pull-right"><?php echo $key['start_date'] ?> - <?php echo $key['end_date'] ?></span></a>
 				<div>
 					<div class="well">
 						<ul class="toolbar">
@@ -63,9 +78,24 @@
 						</ul><!-- /toolbar -->
 					</div><!-- /well -->
 
-					<p><span class="label">Placering:</span> <?php echo $key['place'] ?></p>
-					<p><span class="label">Arrangør:</span> <?php echo $key['organizer'] ?></p>
-					<p><span class="label">Beskrivelse:</span> <?php echo $key['description'] ?></p>
+					<div class="infolist">
+						<div><span class="label">Placering:</span></div>
+						<span><?php echo $key['place'] ?></span>
+
+						<div><span class="label">Arrangør:</span></div>
+						<span><?php echo $key['organizer'] ?></span>
+
+						<div><span class="label">Beskrivelse:</span></div>
+						<span><?php echo $key['description'] ?></span>
+					</div>
+					<div class="infolist">
+						<div><span class="label">Event start:</span></div>
+						<span><?php echo $key['start_date'] ?> <?php echo $key['start_time'] ?></span>
+
+						<div><span class="label">Event slut:</span></div>
+						<span><?php echo $key['end_date'] ?> <?php echo $key['end_time'] ?></span>
+					</div>
+					<div style="clear:both;"></div>
 				</div>
 			</li>
 		
@@ -96,9 +126,24 @@
 						</ul><!-- /toolbar -->
 					</div><!-- /well -->
 
-					<p><span class="label">Placering:</span> <?php echo $key['place'] ?></p>
-					<p><span class="label">Arrangør:</span> <?php echo $key['organizer'] ?></p>
-					<p><span class="label">Beskrivelse:</span> <?php echo $key['description'] ?></p>
+					<div class="infolist">
+						<div><span class="label">Placering:</span></div>
+						<span><?php echo $key['place'] ?></span>
+
+						<div><span class="label">Arrangør:</span></div>
+						<span><?php echo $key['organizer'] ?></span>
+
+						<div><span class="label">Beskrivelse:</span></div>
+						<span><?php echo $key['description'] ?></span>
+					</div>
+					<div class="infolist">
+						<div><span class="label">Event start:</span></div>
+						<span><?php echo $key['start_date'] ?> <?php echo $key['start_time'] ?></span>
+
+						<div><span class="label">Event slut:</span></div>
+						<span><?php echo $key['end_date'] ?> <?php echo $key['end_time'] ?></span>
+					</div>
+					<div style="clear:both;"></div>
 				</div>
 			</li>
 		
