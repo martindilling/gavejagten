@@ -7,8 +7,10 @@ class Admin extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->library('auth');
-		$this->load->model('auth_model');
 		$this->load->library('form_validation');
+		
+		$this->load->model('auth_model');
+		$this->load->model('event_model');
 	}
 	
 	private function _view($view, $data)
@@ -114,6 +116,10 @@ class Admin extends CI_Controller
 
 		//set activepage
 		$this->data['activep'] = 'adminpanel';
+		
+		//get all events from db
+		$this->data['events'] = $this->event_model->get();
+		vd::dumpd($this->data['events']);
 		
 		//Show the panel view
 		$this->_view('pages/panel_view', $this->data);
