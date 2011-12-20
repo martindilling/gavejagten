@@ -58,6 +58,9 @@
 .contentlist > li > a > img {
     margin-bottom: -3px;
 }
+.contentlist > li > a:focus {
+    outline: none;
+}
 .contentlist > li > a {
     background-color: #f5f5f5;
     background-repeat: no-repeat;
