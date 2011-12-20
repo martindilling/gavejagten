@@ -28,8 +28,8 @@
 					</ul><!-- /toolbar -->
 				</div><!-- /well -->
 
-				<p><span class="label">Placering:</span> Bruun's Galleri - Århus</p>
-				<p><span class="label">Arrangør:</span> Bruun's Galleri - Århus</p>
+				<p><span class="label">Placering:</span> Bruun's Galleri - Aarhus</p>
+				<p><span class="label">Arrangør:</span> Bruun's Galleri - Aarhus</p>
 				<p><span class="label">Beskrivelse:</span> Beskrivelse</p>
 			</div>
 		</li>
