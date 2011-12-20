@@ -1,6 +1,6 @@
 	<div class="well">
 		<ul class="toolbar">
-			<li><?php echo anchor('admin/new_event', '<img src="'. base_url() .'images/icons/add.png" height="16" width="16" /> Nyt event', array('class' => 'btn success')) ?></li>
+			<li><?php echo anchor('admin/new_event', '<img src="'. base_url() .'images/icons/add.png" height="16" width="16" /> Ny event', array('class' => 'btn success')) ?></li>
 		</ul><!-- /toolbar -->
 	</div><!-- /well -->
 
