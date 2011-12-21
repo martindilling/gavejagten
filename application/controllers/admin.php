@@ -11,16 +11,11 @@ class Admin extends CI_Controller
 		
 		$this->load->model('auth_model');
 		$this->load->model('event_model');
-		
-		//sets error message when the field validation fails
-		$this->form_validation->set_message('required', 'skal udfyldes');
-		
-		//sets tags the error will be enclosed in
-		$this->form_validation->set_error_delimiters('<span class="help-inline">', '</span>');
 	}
 	
 	private function _view($view, $data)
 	{
+		//load the nessesary views and the view from attr
 		$this->load->view('snippets/header', $data);
 		$this->load->view('snippets/menu', $data);
 		$this->load->view('snippets/title_breadcrumb', $data);
@@ -53,6 +48,12 @@ class Admin extends CI_Controller
 		//validate form input
 		$this->form_validation->set_rules('username', 'Brugernavn', 'required');
 		$this->form_validation->set_rules('password', 'Password', 'required');
+		
+		//sets error message when the field validation fails
+		$this->form_validation->set_message('required', 'skal udfyldes');
+		
+		//sets tags the error will be enclosed in
+		$this->form_validation->set_error_delimiters('<span class="help-inline">', '</span>');
 		
 		//get username and password from post
 		$username = $this->input->post('username');
@@ -119,7 +120,6 @@ class Admin extends CI_Controller
 		
 		//get all events from db
 		$this->data['events'] = $this->event_model->get();
-//		vd::dumpd($this->data['events']);
 		
 		//Show the panel view
 		$this->_view('pages/panel_view', $this->data);
@@ -134,13 +134,20 @@ class Admin extends CI_Controller
 		$this->data['title'] = 'Adminpanel - Ny event';
 		$this->data['headline'] = 'Ny event';
 		$this->data['subheadline'] = 'opret en ny event';
-		
+
+		//set the form action
+		$this->data['action']     = 'admin/new_event';
+
+		//set text on submit btn
+		$this->data['btn_action'] = 'Opret event';
+
 		//set breadcrumbs
 		$this->data['breadcrumbs'] = array('Adminpanel' => 'admin/adminpanel', 'Ny event' => 'admin/new_event');
 
 		//set activepage
 		$this->data['activep'] = 'new_event';
-		
+
+		//put form post data in variables
 		$name			= $this->input->post('event_name');
 		$startdate		= $this->input->post('event_startdate');
 		$start_hour		= $this->input->post('event_start_hour');
@@ -151,6 +158,7 @@ class Admin extends CI_Controller
 		$place			= $this->input->post('event_place');
 		$organizer		= $this->input->post('event_organizer');
 		$description	= $this->input->post('event_description');
+
 		//validate form input
 		$this->form_validation->set_rules('event_name',			'Navn', 'required');
 		$this->form_validation->set_rules('event_startdate',	'Start dato', 'required');
@@ -162,44 +170,146 @@ class Admin extends CI_Controller
 		$this->form_validation->set_rules('event_place',		'Sted', 'required');
 		$this->form_validation->set_rules('event_organizer',	'Arrangør', 'required');
 		$this->form_validation->set_rules('event_description',	'Beskrivelse', 'required');
+
+		//sets error message when the field validation fails
+		$this->form_validation->set_message('required', 'skal udfyldes');
+
+		//sets tags the error will be enclosed in
+		$this->form_validation->set_error_delimiters('<span class="help-inline">', '</span>');
 		
 		if ($this->form_validation->run() == true)
 		{//check to see if creating event
-
+			//adds the event to the db
 			$this->event_model->add();
 			
 			//set flashdata, just in case
 			$this->session->set_flashdata('message', 'Nyt event oprettet');
+			
 			//redirect them back to the home page
 			redirect('admin/adminpanel', 'refresh');
-			
-//			if ($this->auth_model->login($username, $password))
-//			{//if the login is successful
-//				//set flashdata, just in case
-//				$this->session->set_flashdata('message', 'Logget ind');
-//				//redirect them back to the home page
-//				redirect(base_url(), 'refresh');
-//			}
-//			else
-//			{//if the login was un-successful
-//				//set flashdata, just in case
-//				$this->session->set_flashdata('error', 'Fejl under login');
-//				//redirect them back to the login page
-//				redirect('admin/login', 'refresh');
-//			}
 		}
 		else
-		{//the user is not logging in so display the login page
-			//set the flash data error message if there is one
-			$this->data['error'] = $this->session->flashdata('error');
-
+		{//is not creating event
+			//creates event object array, and fill with null, so we don't get errors in view
+			$this->data['event'] = (object)array(
+						'id_event'		=> NULL,
+						'name'			=> NULL,
+						'place'			=> NULL,
+						'organizer'		=> NULL,
+						'description'	=> NULL,
+						'start_time'	=> NULL,
+						'end_time'		=> NULL,
+						'startdate'		=> NULL,
+						'start_hour'	=> NULL,
+						'start_min'		=> NULL,
+						'enddate'		=> NULL,
+						'end_hour'		=> NULL,
+						'end_min'		=> NULL
+			);
+			
 			//Show the new event view
 			$this->_view('pages/new_event_view', $this->data);
 		}
-		
-		
-		
 	}
+	
+	public function edit_event($id_event = 0)
+	{
+		//redirect to login if not logged in
+		$this->_is_logged_in();
+		
+		//set page title, headline and subheadline
+		$this->data['title'] = 'Adminpanel - Rediger event';
+		$this->data['headline'] = 'Rediger event';
+		$this->data['subheadline'] = 'rediger et event';
+
+		//set the form action
+		$this->data['action']     = 'admin/edit_event';
+
+		//set text on submit btn
+		$this->data['btn_action'] = 'Rediger event';
+
+		//set breadcrumbs
+		$this->data['breadcrumbs'] = array('Adminpanel' => 'admin/adminpanel', 'Rediger event' => 'admin/new_event');
+
+		//set activepage
+		$this->data['activep'] = 'new_event';
+
+		//put form post data in variables
+		$name			= $this->input->post('event_name');
+		$startdate		= $this->input->post('event_startdate');
+		$start_hour		= $this->input->post('event_start_hour');
+		$start_min		= $this->input->post('event_start_min');
+		$enddate		= $this->input->post('event_enddate');
+		$end_hour		= $this->input->post('event_end_hour');
+		$end_min		= $this->input->post('event_end_min');
+		$place			= $this->input->post('event_place');
+		$organizer		= $this->input->post('event_organizer');
+		$description	= $this->input->post('event_description');
+
+		//validate form input
+		$this->form_validation->set_rules('event_name',			'Navn', 'required');
+		$this->form_validation->set_rules('event_startdate',	'Start dato', 'required');
+		$this->form_validation->set_rules('event_start_hour',	'Start time', 'required');
+		$this->form_validation->set_rules('event_start_min',	'Start min', 'required');
+		$this->form_validation->set_rules('event_enddate',		'Slut dato', 'required');
+		$this->form_validation->set_rules('event_end_hour',		'Slut time', 'required');
+		$this->form_validation->set_rules('event_end_min',		'Slut min', 'required');
+		$this->form_validation->set_rules('event_place',		'Sted', 'required');
+		$this->form_validation->set_rules('event_organizer',	'Arrangør', 'required');
+		$this->form_validation->set_rules('event_description',	'Beskrivelse', 'required');
+
+		//sets error message when the field validation fails
+		$this->form_validation->set_message('required', 'skal udfyldes');
+
+		//sets tags the error will be enclosed in
+		$this->form_validation->set_error_delimiters('<span class="help-inline">', '</span>');
+		
+		
+		if ($this->form_validation->run() == true)
+		{//check to see if editing event
+			//adds the event to the db
+			$this->event_model->update();
+			
+			//set flashdata, just in case
+			$this->session->set_flashdata('message', 'Event rettet');
+			
+			//redirect them back to the home page
+			redirect('admin/adminpanel', 'refresh');
+		}
+		else
+		{//is not editing event
+			//get event data from id
+			$this->data['event'] = $this->event_model->get($id_event);
+
+			//adds the date, hours and mins in seperate entries in the object array
+			$this->data['event']->startdate		= date_format(date_create($this->data['event']->start_time), 'd-m-Y');
+			$this->data['event']->start_hour	= date_format(date_create($this->data['event']->start_time), 'H');
+			$this->data['event']->start_min		= date_format(date_create($this->data['event']->start_time), 'i');
+			$this->data['event']->enddate		= date_format(date_create($this->data['event']->end_time), 'd-m-Y');
+			$this->data['event']->end_hour		= date_format(date_create($this->data['event']->end_time), 'H');
+			$this->data['event']->end_min		= date_format(date_create($this->data['event']->end_time), 'i');
+			
+			//Show the new event view
+			$this->_view('pages/new_event_view', $this->data);
+		}
+
+	}
+	
+	public function delete_event($id_event = 0)
+	{
+		//redirect to login if not logged in
+		$this->_is_logged_in();
+		
+		//delete event from db
+		$this->event_model->delete($id_event);
+		
+		//set flashdata, just in case
+		$this->session->set_flashdata('message', 'Event slettet');
+
+		//redirect them back to the home page
+		redirect('admin/adminpanel', 'refresh');
+	}
+	
 	
 	public function show_sponsors()
 	{

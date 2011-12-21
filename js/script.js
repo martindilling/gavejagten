@@ -6,7 +6,16 @@ $(document).ready(function() {
 	curr_month++;
 	var curr_year = d.getFullYear();
 	var curdate = curr_date + "-" + curr_month + "-" + curr_year;
-	$('#event_startdate').attr('value', curdate);
+	
+	if (!$('#event_startdate').attr('value')) {
+	    $('#event_startdate').attr('value', curdate);
+	}
+	
+	if (!$('#event_enddate').attr('value')) {
+	    $('#event_enddate').attr('value', curdate);
+	}
+	
+	
 
 	$('#event_startdate').DatePicker({
 		format:'d-m-Y',
@@ -22,7 +31,6 @@ $(document).ready(function() {
 //			$('#event_startdate').DatePickerHide();
 		}
 	});
-	$('#event_enddate').attr('value', curdate);
 
 	$('#event_enddate').DatePicker({
 		format:'d-m-Y',
