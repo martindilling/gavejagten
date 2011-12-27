@@ -8,6 +8,7 @@
 		<li class="divider">
 			<div>Aktive events</div>				    
 		</li>
+		
 		<?php foreach($events['active'] as $key): ?>
 
 			<li class="green">
@@ -56,6 +57,7 @@
 		<li class="divider">
 			<div>Kommende events</div>				    
 		</li>
+		
 		<?php foreach($events['future'] as $key): ?>
 
 			<li class="">
@@ -104,6 +106,7 @@
 		<li class="divider">
 			<div>Gamle events</div>				    
 		</li>
+		
 		<?php foreach($events['old'] as $key): ?>
 
 			<li class="gray">
@@ -148,6 +151,7 @@
 			</li>
 		
 		<?php endforeach; ?>
+			
 	</ul><!-- /contentlist -->
 
 </div><!-- /container -->	
