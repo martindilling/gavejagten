@@ -228,7 +228,7 @@ class Admin extends CI_Controller
 		$this->data['subheadline'] = 'rediger et event';
 
 		//set the form action
-		$this->data['action']     = 'admin/edit_event';
+		$this->data['action']     = 'admin/edit_event/' . $id_event;
 
 		//set text on submit btn
 		$this->data['btn_action'] = 'Rediger event';
@@ -439,46 +439,34 @@ class Admin extends CI_Controller
 		$this->_is_logged_in();
 		
 		//set page title, headline and subheadline
-		$this->data['title'] = 'Adminpanel - Rediger event';
-		$this->data['headline'] = 'Rediger event';
-		$this->data['subheadline'] = 'rediger et event';
+		$this->data['title'] = 'Adminpanel - Rediger sponsor';
+		$this->data['headline'] = 'Rediger sponsor';
+		$this->data['subheadline'] = 'rediger en sponsor';
 
 		//set the form action
-		$this->data['action']     = 'admin/edit_event';
+		$this->data['action']     = 'admin/edit_sponsor/' . $id_sponsor;
 
 		//set text on submit btn
-		$this->data['btn_action'] = 'Rediger event';
+		$this->data['btn_action'] = 'Rediger sponsor';
 
 		//set breadcrumbs
-		$this->data['breadcrumbs'] = array('Adminpanel' => 'admin/adminpanel', 'Rediger event' => 'admin/new_event');
+		$this->data['breadcrumbs'] = array('Adminpanel' => 'admin/adminpanel', 'Rediger sponsor' => 'admin/new_sponsor');
 
 		//set activepage
-		$this->data['activep'] = 'new_event';
+		$this->data['activep'] = 'new_sponsor';
 
 		//put form post data in variables
-		$name			= $this->input->post('event_name');
-		$startdate		= $this->input->post('event_startdate');
-		$start_hour		= $this->input->post('event_start_hour');
-		$start_min		= $this->input->post('event_start_min');
-		$enddate		= $this->input->post('event_enddate');
-		$end_hour		= $this->input->post('event_end_hour');
-		$end_min		= $this->input->post('event_end_min');
-		$place			= $this->input->post('event_place');
-		$organizer		= $this->input->post('event_organizer');
-		$description	= $this->input->post('event_description');
+		$name			= $this->input->post('sponsor_name');
+		$url			= $this->input->post('sponsor_url');
+		$description	= $this->input->post('sponsor_description');
+		$img_link		= $this->input->post('sponsor_logo');
 
 		//validate form input
-		$this->form_validation->set_rules('event_name',			'Navn', 'required');
-		$this->form_validation->set_rules('event_startdate',	'Start dato', 'required');
-		$this->form_validation->set_rules('event_start_hour',	'Start time', 'required');
-		$this->form_validation->set_rules('event_start_min',	'Start min', 'required');
-		$this->form_validation->set_rules('event_enddate',		'Slut dato', 'required');
-		$this->form_validation->set_rules('event_end_hour',		'Slut time', 'required');
-		$this->form_validation->set_rules('event_end_min',		'Slut min', 'required');
-		$this->form_validation->set_rules('event_place',		'Sted', 'required');
-		$this->form_validation->set_rules('event_organizer',	'Arrangør', 'required');
-		$this->form_validation->set_rules('event_description',	'Beskrivelse', 'required');
-
+		$this->form_validation->set_rules('sponsor_name',			'Navn', 'required');
+		$this->form_validation->set_rules('sponsor_url',			'Hjemmeside', 'required');
+		$this->form_validation->set_rules('sponsor_description',	'Beskrivelse', 'required');
+		$this->form_validation->set_rules('sponsor_logo',			'Logo', 'required');
+		
 		//sets error message when the field validation fails
 		$this->form_validation->set_message('required', 'skal udfyldes');
 
@@ -489,29 +477,21 @@ class Admin extends CI_Controller
 		if ($this->form_validation->run() == true)
 		{//check to see if editing event
 			//adds the event to the db
-			$this->event_model->update();
+			$this->sponsor_model->update();
 			
 			//set flashdata, just in case
-			$this->session->set_flashdata('message', 'Event rettet');
+			$this->session->set_flashdata('message', 'Sponsor rettet');
 			
 			//redirect them back to the home page
-			redirect('admin/adminpanel', 'refresh');
+			redirect('admin/show_sponsors', 'refresh');
 		}
 		else
 		{//is not editing event
 			//get event data from id
-			$this->data['event'] = $this->event_model->get($id_event);
-
-			//adds the date, hours and mins in seperate entries in the object array
-			$this->data['event']->startdate		= date_format(date_create($this->data['event']->start_time), 'd-m-Y');
-			$this->data['event']->start_hour	= date_format(date_create($this->data['event']->start_time), 'H');
-			$this->data['event']->start_min		= date_format(date_create($this->data['event']->start_time), 'i');
-			$this->data['event']->enddate		= date_format(date_create($this->data['event']->end_time), 'd-m-Y');
-			$this->data['event']->end_hour		= date_format(date_create($this->data['event']->end_time), 'H');
-			$this->data['event']->end_min		= date_format(date_create($this->data['event']->end_time), 'i');
+			$this->data['sponsor'] = $this->sponsor_model->get($id_sponsor);
 			
 			//Show the new event view
-			$this->_view('pages/new_event_view', $this->data);
+			$this->_view('pages/new_sponsor_view', $this->data);
 		}
 
 	}
@@ -522,13 +502,13 @@ class Admin extends CI_Controller
 		$this->_is_logged_in();
 		
 		//delete event from db
-		$this->event_model->delete($id_event);
+		$this->sponsor_model->delete($id_sponsor);
 		
 		//set flashdata, just in case
-		$this->session->set_flashdata('message', 'Event slettet');
+		$this->session->set_flashdata('message', 'Sponsor slettet');
 
 		//redirect them back to the home page
-		redirect('admin/adminpanel', 'refresh');
+		redirect('admin/show_sponsors', 'refresh');
 	}
 	
 	public function add_sponsor()

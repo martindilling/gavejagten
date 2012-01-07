@@ -52,9 +52,11 @@
 		</div>
 
 		<div class="actions">
-			<button type="submit" name="submit" class="btn primary">
-				Opret sponsor
-			</button>
+			<?php echo form_button(array(
+							'content' => $btn_action, 
+							'class' => 'btn primary', 
+							'type' => 'submit'
+						)); ?>
 		</div>
 	</fieldset>
 </form>

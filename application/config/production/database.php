@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'martindilling.com.mysql';
-$db['default']['username'] = 'martindilling_c';
-$db['default']['password'] = '7miy7X3k';
-$db['default']['database'] = 'martindilling_c';
+$db['default']['hostname'] = 'mysql.1freehosting.com';
+$db['default']['username'] = 'u567725773_user';
+$db['default']['password'] = 'eccofoxtrotpassword';
+$db['default']['database'] = 'u567725773_base';
 $db['default']['dbdriver'] = 'mysqli';
 $db['default']['dbprefix'] = 'gj_';
 $db['default']['pconnect'] = TRUE;

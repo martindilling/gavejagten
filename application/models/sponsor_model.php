@@ -30,8 +30,7 @@ class Sponsor_model extends CI_Model
 			//get event with id
 			$this->db->select('id_sponsor, name, description, img_link, url');
 			$this->db->from('gj_sponsors');
-			$this->db->join();
-			$this->db->where(array('id_event' => $id));
+			$this->db->where(array('id_sponsor' => $id));
 			
 			$query = $this->db->get();
 			
@@ -67,44 +66,29 @@ class Sponsor_model extends CI_Model
 	public function update()
 	{
 		//put form post data in variables
-		$event_id		= $this->input->post('id_event');
-		$name			= $this->input->post('event_name');
-		$startdate		= $this->input->post('event_startdate');
-		$start_hour		= $this->input->post('event_start_hour');
-		$start_min		= $this->input->post('event_start_min');
-		$enddate		= $this->input->post('event_enddate');
-		$end_hour		= $this->input->post('event_end_hour');
-		$end_min		= $this->input->post('event_end_min');
-		$place			= $this->input->post('event_place');
-		$organizer		= $this->input->post('event_organizer');
-		$description	= $this->input->post('event_description');
-		
-		//set the timezone
-		date_default_timezone_set("Europe/Copenhagen");
-		
-		//formats the date, hour and min to the database format
-		$start_time		= date('Y-m-d H:i:s' ,strtotime($startdate.' '.$start_hour.':'.$start_min.':00'));
-		$end_time		= date('Y-m-d H:i:s' ,strtotime($enddate.' '.$end_hour.':'.$end_min.':00'));
+		$sponsor_id		= $this->input->post('id_sponsor');
+		$name			= $this->input->post('sponsor_name');
+		$url			= $this->input->post('sponsor_url');
+		$description	= $this->input->post('sponsor_description');
+		$img_link		= $this->input->post('sponsor_logo');
 		
         //make array with changes
-		$event_data = array(
+		$sponsor_data = array(
 						'name'			=> $name,
-						'place'			=> $place,
-						'organizer'		=> $organizer,
+						'url'			=> $url,
 						'description'	=> $description,
-						'start_time'	=> $start_time,
-						'end_time'		=> $end_time
+						'img_link'		=> $img_link
 					);
 		
 		//updates the eventdata in db
-		$this->db->where('id_event', $event_id);
-        $this->db->update('gj_events', $event_data);
+		$this->db->where('id_sponsor', $sponsor_id);
+        $this->db->update('gj_sponsors', $sponsor_data);
 	}
 	
 	public function delete($id = 0)
 	{
 		//deletes the event from db
-		$this->db->delete('gj_events', array('id_event' => $id));
+		$this->db->delete('gj_sponsors', array('id_sponsor' => $id));
 	}
 	
 }

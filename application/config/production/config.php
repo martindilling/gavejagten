@@ -14,7 +14,7 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://www.martindilling.com/diverse/gavejagt/';
+$config['base_url']	= 'http://www.gavejagten.goodluckwith.us/';
 
 /*
 |--------------------------------------------------------------------------
