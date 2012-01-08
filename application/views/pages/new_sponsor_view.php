@@ -1,4 +1,4 @@
-<?php echo form_open($action) ?>
+<?php echo form_open_multipart($action) ?>
 	<fieldset>
 		<?php echo form_hidden('id_sponsor', $sponsor->id_sponsor) ?>
 		<div class="clearfix <?php echo form_error('sponsor_name')?'error':''?>">
@@ -42,11 +42,13 @@
 		<div class="clearfix <?php echo form_error('sponsor_logo')?'error':''?>">
 			<label for="sponsor_logo">Logo:</label>
 			<div class="input">
-				<input type="file"
-					   name="sponsor_logo"
-					   id="sponsor_logo"
-					   class="input-file"
-					   value="test" />
+				<?php echo form_upload($data = array(
+										'name'	=> 'sponsor_logo',
+										'id'	=> 'sponsor_logo',
+										'size'	=> '100',
+										'class'	=> 'input-file'
+									)); ?>
+				
 				<?php echo form_error('sponsor_logo'); ?>
 			</div>
 		</div>

@@ -4,13 +4,23 @@
 		<div class="clearfix <?php echo form_error('sponsor')?'error':''?>">
 			<label for="sponsor">Vælg sponsor:</label>
 			<div class="input">
-				<select class="xlarge" size="10" name="sponsor" id="sponsor">
-					<?php foreach($sponsors as $key): ?>
-						<option value="<?php echo $key['id_sponsor'] ?>"><?php echo $key['name'] ?></option>
-					<?php endforeach; ?>
-				</select>
+				
+				<?php if (!$sponsor->name): ?>
+					<select class="xlarge" size="10" name="sponsor" id="sponsor">
+
+						<?php foreach($sponsors as $key): ?>
+							<option value="<?php echo $key['id_sponsor'] ?>"><?php echo $key['name'] ?></option>
+						<?php endforeach; ?>
+
+					</select>
+					<br /><?php echo anchor('admin/new_sponsor', 'Opret ny sponsor') ?>
+				<?php else: ?>
+					<select class="xlarge" size="2" name="sponsor" id="sponsor">
+						<option value="<?php echo $sponsor->id_sponsor ?>" selected><?php echo $sponsor->name ?></option>
+					</select>
+				<?php endif; ?>
+				
 				<?php echo form_error('sponsor');?>
-				<br /><?php echo anchor('admin/new_sponsor', 'Opret ny sponsor') ?>
 			</div>
 		</div><!-- /clearfix -->
 
@@ -20,7 +30,7 @@
 				<input type="text" 
 					   name="donation_piece" 
 					   id="donation_piece" 
-					   value="<?php echo set_value('donation_piece', $sponsor->donation_piece); ?>"
+					   value="<?php echo set_value('donation_piece', $sponsor->value); ?>"
 					   class="xlarge" />
 				<?php echo form_error('donation_piece');?>
 			</div>
@@ -31,7 +41,7 @@
 				<input type="text" 
 					   name="donation_max" 
 					   id="donation_max" 
-					   value="<?php echo set_value('donation_max', $sponsor->donation_max); ?>"
+					   value="<?php echo set_value('donation_max', $sponsor->maxvalue); ?>"
 					   class="xlarge" />
 				<?php echo form_error('donation_max'); ?>
 			</div>

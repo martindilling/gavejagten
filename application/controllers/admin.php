@@ -12,6 +12,7 @@ class Admin extends CI_Controller
 		$this->load->model('auth_model');
 		$this->load->model('event_model');
 		$this->load->model('sponsor_model');
+		$this->load->model('image_model');
 	}
 	
 	private function _view($view, $data)
@@ -331,11 +332,17 @@ class Admin extends CI_Controller
 			$this->data['headline']			= 'Vis alle sponsorer';
 			$this->data['subheadline']		= 'oversigt over alle sponsorer for event';
 
-			//set the form action
-			$this->data['addnew_action']	= 'admin/new_sponsor';
-
-			//set text on submit btn
+			//set the add/new btn
+			$this->data['addnew_action']	= 'admin/new_sponsor/';
 			$this->data['addnew_text']		= 'Opret sponsor';
+			
+			//set the edit btn
+			$this->data['edit_action']		= 'admin/edit_sponsor/';
+			$this->data['edit_text']		= 'Rediger sponsor';
+			
+			//set the delete/remove btn
+			$this->data['delrem_action']	= 'admin/delete_sponsor/';
+			$this->data['delrem_text']		= 'Slet sponsor';
 			
 			//set breadcrumbs
 			$this->data['breadcrumbs']		= array('Adminpanel' => 'admin/adminpanel', 'Vis alle sponsorer' => 'admin/show_sponsors');
@@ -365,11 +372,17 @@ class Admin extends CI_Controller
 			$this->data['headline']			= 'Vis sponsorer';
 			$this->data['subheadline']		= 'oversigt over sponsorer for ' . $event->name;
 
-			//set the form action
+			//set the add/new btn
 			$this->data['addnew_action']	= 'admin/add_sponsor/' . $event_id;
-
-			//set text on submit btn
 			$this->data['addnew_text']		= 'Tilføj sponsor';
+			
+			//set the edit btn
+			$this->data['edit_action']		= 'admin/edit_sponsor_donation/' . $event_id . '/';
+			$this->data['edit_text']		= 'Rediger sponsors donation';
+			
+			//set the delete/remove btn
+			$this->data['delrem_action']	= 'admin/remove_sponsor/' . $event_id . '/';
+			$this->data['delrem_text']		= 'Fjern sponsor';
 			
 			//set breadcrumbs
 			$this->data['breadcrumbs']		= array('Adminpanel' => 'admin/adminpanel', $event->name => 'admin/show_sponsors/' . $event_id, 'Vis sponsorer' => 'admin/show_sponsors');
@@ -378,7 +391,7 @@ class Admin extends CI_Controller
 			$this->data['activep']			= 'show_sponsors';
 			
 			//get all sponsors from event from db
-			$this->data['sponsors']			= $this->sponsor_model->get(null, $event_id);
+			$this->data['sponsors']			= $this->sponsor_model->get($event_id);
 			
 			if ($this->data['sponsors'] == null)
 			{
@@ -417,13 +430,13 @@ class Admin extends CI_Controller
 		$name			= $this->input->post('sponsor_name');
 		$url			= $this->input->post('sponsor_url');
 		$description	= $this->input->post('sponsor_description');
-		$img_link		= $this->input->post('sponsor_logo');
+		
 
 		//validate form input
 		$this->form_validation->set_rules('sponsor_name',			'Navn', 'required');
 		$this->form_validation->set_rules('sponsor_url',			'Hjemmeside', 'required');
 		$this->form_validation->set_rules('sponsor_description',	'Beskrivelse', 'required');
-		$this->form_validation->set_rules('sponsor_logo',			'Logo', 'required');
+//		$this->form_validation->set_rules('sponsor_logo',			'Logo', 'required');
 
 		//sets error message when the field validation fails
 		$this->form_validation->set_message('required', 'skal udfyldes');
@@ -432,15 +445,59 @@ class Admin extends CI_Controller
 		$this->form_validation->set_error_delimiters('<span class="help-inline">', '</span>');
 		
 		if ($this->form_validation->run() == true)
-		{//check to see if creating event
+		{//check to see if creating event			
 			//adds the event to the db
 			$this->sponsor_model->add();
 			
-			//set flashdata, just in case
-			$this->session->set_flashdata('message', 'Ny sponsor oprettet');
+			//gets the id of the row just created
+			$sponsor_id = $this->sponsor_model->insert_id();
 			
-			//redirect them back to the show_sponsors page
-			redirect('admin/show_sponsors', 'refresh');
+			//updates the img_link in the db to the right name
+			$this->sponsor_model->updateimg($sponsor_id, $sponsor_id . '_' . $name . '.jpg');
+			
+			//config for uploading
+			$config['upload_path']		= realpath(BASEPATH . '../images/sponsors/');
+			$config['file_name']		= $sponsor_id . '_' . $name . '.jpg';
+			$config['allowed_types']	= 'jpg';
+			$config['max_size']			= '3000';
+			$config['max_width']		= '3000';
+			$config['max_height']		= '2000';
+
+			//load upload library with the config
+			$this->load->library('upload', $config);
+			
+			//upload the image
+			if ( ! $this->upload->do_upload("sponsor_logo"))
+			{//error in upload
+				//set error message
+				$data['error'] = $this->upload->display_errors();
+				
+				//delete the row in the db, and starts over
+				$this->sponsor_model->delete($sponsor_id);
+				
+				//creates event object array, and fill with null, so we don't get errors in view
+				$this->data['sponsor'] = (object)array(
+							'id_sponsor'	=> NULL,
+							'name'			=> $name,
+							'url'			=> $url,
+							'description'	=> $description,
+							'logo'			=> NULL
+				);
+
+				//Show the new event view
+				$this->_view('pages/new_sponsor_view', $this->data);
+			}
+			else
+			{//success in upload
+				//make the thumb
+				$this->_make_thumbnail();
+				
+				//set flashdata, just in case
+				$this->session->set_flashdata('message', 'Ny sponsor oprettet');
+
+				//redirect them back to the show_sponsors page
+				redirect('admin/show_sponsors', 'refresh');
+			}
 		}
 		else
 		{//is not creating event
@@ -456,6 +513,27 @@ class Admin extends CI_Controller
 			//Show the new event view
 			$this->_view('pages/new_sponsor_view', $this->data);
 		}
+	}
+	
+	private function _make_thumbnail()
+	{
+		//get data from the uploaded image
+		$data = $this->upload->data();
+		
+		//set config for image_lib
+		$config['image_library']	= 'gd2';
+		$config['source_image']		= $data['full_path'];
+		$config['new_image']		= $data['file_path'] . 'thumbs/' . $data['file_name'];
+		$config['create_thumb']		= TRUE;
+		$config['maintain_ratio']	= TRUE;
+		$config['width']			= 72;
+		$config['height']			= 72;
+		
+		//loads image_lib with config
+		$this->load->library('image_lib', $config); 
+		
+		//creates the thumb
+		$this->image_lib->resize();
 	}
 	
 	public function edit_sponsor($id_sponsor = 0)
@@ -513,7 +591,7 @@ class Admin extends CI_Controller
 		else
 		{//is not editing event
 			//get event data from id
-			$this->data['sponsor'] = $this->sponsor_model->get($id_sponsor);
+			$this->data['sponsor'] = $this->sponsor_model->get(null, $id_sponsor);
 			
 			//Show the new event view
 			$this->_view('pages/new_sponsor_view', $this->data);
@@ -597,9 +675,10 @@ class Admin extends CI_Controller
 		{//is not creating event
 			//creates sponsor object array, and fill with null, so we don't get errors in view
 			$this->data['sponsor'] = (object)array(
+						'name'			=> NULL,
 						'id_sponsor'	=> NULL,
-						'donation_piece'=> NULL,
-						'donation_max'	=> NULL
+						'value'			=> NULL,
+						'maxvalue'		=> NULL
 			);
 			
 			$this->data['event_id'] = $event_id;
@@ -607,6 +686,87 @@ class Admin extends CI_Controller
 			//Show the add sponsor view
 			$this->_view('pages/add_sponsor_view', $this->data);
 		}
+	}
+	
+	public function edit_sponsor_donation($id_event = 0, $id_sponsor = 0)
+	{
+		//redirect to login if not logged in
+		$this->_is_logged_in();
+		
+		//put info about event in the event var
+		$event								= $this->event_model->get($id_event);
+		
+		//set page title, headline and subheadline
+		$this->data['title']				= 'Adminpanel - Rediger sponsors donation';
+		$this->data['headline']				= 'Rediger sponsors donation';
+		$this->data['subheadline']			= 'rediger en sponsors donation';
+
+		//set the form action
+		$this->data['action']				= 'admin/edit_sponsor_donation/' . $id_event . '/' . $id_sponsor;
+
+		//set text on submit btn
+		$this->data['btn_action']			= 'Rediger sponsors donation';
+
+		//set activepage
+		$this->data['activep']				= 'add_sponsor';
+		
+		//set breadcrumbs
+		$this->data['breadcrumbs']			= array('Adminpanel' => 'admin/adminpanel', $event->name => 'admin/show_sponsors/' . $id_event, 'Tilføj sponsor' => 'admin/add_sponsor');
+		
+		//put form post data in variables
+		$sponsor		= $this->input->post('sponsor');
+		$donation_piece	= $this->input->post('donation_piece');
+		$donation_max	= $this->input->post('donation_max');
+
+		//validate form input
+		$this->form_validation->set_rules('sponsor',		'Sponsor', 'required');
+		$this->form_validation->set_rules('donation_piece',	'Donation pr. scanning', 'required');
+		$this->form_validation->set_rules('donation_max',	'Donations loft', 'required');
+		
+		//sets error message when the field validation fails
+		$this->form_validation->set_message('required', 'skal udfyldes');
+
+		//sets tags the error will be enclosed in
+		$this->form_validation->set_error_delimiters('<span class="help-inline">', '</span>');
+		
+		
+		if ($this->form_validation->run() == true)
+		{//check to see if editing event
+			//adds the event to the db
+			$this->sponsor_model->updatetoevent();
+			
+			//set flashdata, just in case
+			$this->session->set_flashdata('message', 'Sponsors donation rettet');
+			
+			//redirect them back to the home page
+			redirect('admin/show_sponsors/'.$id_event, 'refresh');
+		}
+		else
+		{//is not editing event
+			//get event data from id
+			$this->data['sponsor'] = $this->sponsor_model->get($id_event, $id_sponsor);
+			
+			$this->data['event_id'] = $id_event;
+			
+			//Show the new event view
+			$this->_view('pages/add_sponsor_view', $this->data);
+		}
+
+	}
+	
+	public function remove_sponsor($id_event = 0, $id_sponsor = 0)
+	{
+		//redirect to login if not logged in
+		$this->_is_logged_in();
+		
+		//delete event from db
+		$this->sponsor_model->remove($id_event, $id_sponsor);
+		
+		//set flashdata, just in case
+		$this->session->set_flashdata('message', 'Sponsor fjernet');
+
+		//redirect them back to the home page
+		redirect('admin/show_sponsors/'.$id_event, 'refresh');
 	}
 	
 	

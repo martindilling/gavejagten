@@ -23,8 +23,8 @@
 					</li><!-- /group -->
 					<li class="group right">
 						<ul>
-							<li><?php echo anchor('admin/edit_sponsor/'.$key['id_sponsor'], '<img src="'. base_url() .'images/icons/edit.png" height="16" width="16" /> Rediger sponsor', array('class' => 'btn small info')) ?></li>
-									<li><?php echo anchor('admin/delete_sponsor/'.$key['id_sponsor'], '<img src="'. base_url() .'images/icons/delete.png" height="16" width="16" /> Slet sponsor', array('class' => 'btn small danger')) ?></li>
+							<li><?php echo anchor($edit_action . $key['id_sponsor'], '<img src="'. base_url() .'images/icons/edit.png" height="16" width="16" /> ' . $edit_text, array('class' => 'btn small info')) ?></li>
+									<li><?php echo anchor($delrem_action . $key['id_sponsor'], '<img src="'. base_url() .'images/icons/delete.png" height="16" width="16" /> ' . $delrem_text, array('class' => 'btn small danger')) ?></li>
 						</ul>
 					</li><!-- /group -->
 				</ul><!-- /toolbar -->
@@ -41,7 +41,7 @@
 				<span><?php echo $key['description'] ?></span>
 			</div>
 			
-			<?php if ($key['value']): ?>
+			<?php if (isset($key['value'])): ?>
 				<div class="infolist">
 					<div><span class="label">Donation pr. pakke:</span></div>
 					<span><?php echo $key['value'] ?> kr</span>
