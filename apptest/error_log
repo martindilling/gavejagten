@@ -1,0 +1,13 @@
+[28-Dec-2011 14:31:01] PHP Fatal error:  Call to undefined function  decode() in /home/u567725773/public_html/apptest/app_qrcode_grab.php on line 3
+[28-Dec-2011 14:31:46] PHP Fatal error:  Call to undefined function  decode() in /home/u567725773/public_html/apptest/app_qrcode_grab.php on line 3
+[28-Dec-2011 14:32:41] PHP Fatal error:  Call to undefined function  decode() in /home/u567725773/public_html/apptest/app_qrcode_grab.php on line 3
+[28-Dec-2011 14:33:13] PHP Fatal error:  Call to undefined function  decode() in /home/u567725773/public_html/apptest/app_qrcode_grab.php on line 3
+[28-Dec-2011 14:34:08] PHP Fatal error:  Call to undefined function  decode() in /home/u567725773/public_html/apptest/app_qrcode_grab.php on line 3
+[28-Dec-2011 16:41:14] PHP Parse error:  syntax error, unexpected '"' in /home/u567725773/public_html/apptest/app_qrcode_grab.php on line 9
+[28-Dec-2011 16:42:38] PHP Parse error:  syntax error, unexpected '"' in /home/u567725773/public_html/apptest/app_qrcode_grab.php on line 9
+[30-Dec-2011 22:36:38] PHP Warning:  mysqli_query() expects at least 2 parameters, 1 given in /home/u567725773/public_html/apptest/app_timespan_get.php on line 9
+[30-Dec-2011 22:36:38] PHP Warning:  mysqli_query() expects at least 2 parameters, 1 given in /home/u567725773/public_html/apptest/app_timespan_get.php on line 10
+[30-Dec-2011 22:36:38] PHP Warning:  mysqli_query() expects at least 2 parameters, 1 given in /home/u567725773/public_html/apptest/app_timespan_get.php on line 11
+[30-Dec-2011 22:36:38] PHP Warning:  mysqli_query() expects at least 2 parameters, 1 given in /home/u567725773/public_html/apptest/app_timespan_get.php on line 12
+[31-Dec-2011 06:45:55] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/u567725773/public_html/apptest/app_qrcode_drop.php on line 40
+[31-Dec-2011 06:52:45] PHP Warning:  mysqli_num_rows() expects parameter 1 to be mysqli_result, boolean given in /home/u567725773/public_html/apptest/app_qrcode_drop.php on line 40

@@ -10,27 +10,25 @@ class Sponsor_model extends CI_Model
 		
 	}
 	
-	public function get($id=null)
+	public function get($sponsor_id=null, $event_id=null)
 	{
-		if (is_null($id))
-		{
+		if (is_null($sponsor_id) && is_null($event_id))
+		{//if both sponsor_id and event_id is null
 			//get all sponsors
 			$this->db->select('id_sponsor, name, description, img_link, url');
 			$this->db->from('gj_sponsors');
 			
 			$query = $this->db->get();
 			
-//			$query->result();
-			
 			//returns the event array
 			return $query->result_array();
 		}
-		else
-		{
+		else if (!is_null($sponsor_id) && is_null($event_id))
+		{//if sponsor_id exists and event_id is null
 			//get event with id
 			$this->db->select('id_sponsor, name, description, img_link, url');
 			$this->db->from('gj_sponsors');
-			$this->db->where(array('id_sponsor' => $id));
+			$this->db->where(array('id_sponsor' => $sponsor_id));
 			
 			$query = $this->db->get();
 			
@@ -39,6 +37,25 @@ class Sponsor_model extends CI_Model
 			//return row if something is found, else return null
 			if ($row) {
 				return $row[0];
+			} else {
+				return NULL;
+			}
+		}
+		else if (is_null($sponsor_id) && !is_null($event_id))
+		{//if sponsor_id is null and event_id exists
+			//get event with id
+			$this->db->select('gj_sponsors.id_sponsor, name, description, img_link, url, id_event, value, maxvalue, qr_string');
+			$this->db->from('gj_join_events_sponsors');
+			$this->db->join('gj_sponsors', 'gj_sponsors.id_sponsor = gj_join_events_sponsors.id_sponsor');
+			$this->db->where(array('gj_join_events_sponsors.id_event' => $event_id));
+			
+			$query = $this->db->get();
+			
+			$row = $query->result_array();
+			
+			//return row if something is found, else return null
+			if ($row) {
+				return $row;
 			} else {
 				return NULL;
 			}
@@ -61,6 +78,65 @@ class Sponsor_model extends CI_Model
 										'url'			=> $url
 									));
 
+	}
+	
+	public function addtoevent($event_id)
+	{
+		//put form post data in variables
+		//$id_event		= $this->input->post('id_event');
+		$sponsor_id		= $this->input->post('sponsor');
+		$donation_piece	= $this->input->post('donation_piece');
+		$donation_max	= $this->input->post('donation_max');
+		
+		//generate the QR Code
+		$qr_string		= 'placeholder QR Code';
+		
+		$exists = $this->_check_event_sponsor($event_id, $sponsor_id);
+		
+		if ($exists == FALSE)
+		{//the data does not exist
+			//insert the new event in db
+			$this->db->insert('gj_join_events_sponsors', array(
+										'id_event'		=> $event_id,
+										'id_sponsor'	=> $sponsor_id,
+										'value'			=> $donation_piece,
+										'maxvalue'		=> $donation_max,
+										'qr_string'		=> $qr_string
+						));
+			
+		}
+		else
+		{//the data does exist
+			//make array with changes
+			$data = array(
+										'id_event'		=> $event_id,
+										'id_sponsor'	=> $sponsor_id,
+										'value'			=> $donation_piece,
+										'maxvalue'		=> $donation_max,
+										'qr_string'		=> $qr_string
+						);
+
+			//updates the db
+			$this->db->where('id_event', $event_id);
+			$this->db->where('id_sponsor', $sponsor_id);
+			$this->db->update('gj_join_events_sponsors', $data);
+		}
+
+	}
+	
+	private function _check_event_sponsor($event_id, $sponsor_id)
+	{
+		$this->db->select('id_event, id_sponsor');
+		$this->db->where('id_event', $event_id);
+		$this->db->where('id_sponsor', $sponsor_id);
+		
+		$query = $this->db->get('gj_join_events_sponsors');
+		
+		if ($query->num_rows() > 0) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
 	}
 	
 	public function update()

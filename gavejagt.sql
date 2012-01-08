@@ -2,10 +2,10 @@
 -- version 3.4.5
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Dec 20, 2011 at 08:10 AM
--- Server version: 5.5.16
--- PHP Version: 5.3.8
+-- Vært: localhost
+-- Genereringstid: 08. 01 2012 kl. 06:15:00
+-- Serverversion: 5.5.16
+-- PHP-version: 5.3.8
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gj_admins`
+-- Struktur-dump for tabellen `gj_admins`
 --
 
 CREATE TABLE IF NOT EXISTS `gj_admins` (
@@ -32,10 +32,10 @@ CREATE TABLE IF NOT EXISTS `gj_admins` (
   `password` varchar(40) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_admin`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `gj_admins`
+-- Data dump for tabellen `gj_admins`
 --
 
 INSERT INTO `gj_admins` (`id_admin`, `username`, `password`, `email`) VALUES
@@ -44,7 +44,7 @@ INSERT INTO `gj_admins` (`id_admin`, `username`, `password`, `email`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gj_events`
+-- Struktur-dump for tabellen `gj_events`
 --
 
 CREATE TABLE IF NOT EXISTS `gj_events` (
@@ -55,21 +55,23 @@ CREATE TABLE IF NOT EXISTS `gj_events` (
   `description` text,
   `start_time` datetime DEFAULT NULL,
   `end_time` datetime DEFAULT NULL,
+  `zone_time` char(255) NOT NULL,
   PRIMARY KEY (`id_event`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=16 ;
 
 --
--- Dumping data for table `gj_events`
+-- Data dump for tabellen `gj_events`
 --
 
-INSERT INTO `gj_events` (`id_event`, `name`, `place`, `organizer`, `description`, `start_time`, `end_time`) VALUES
-(1, 'Gavejagt', 'Bruun''s Galleri - M.P. Bruuns Gade 25, 8000 Aarhus C', 'Bruun''s Galleri', 'Beskrivelse af Gavejagt eventet i Bruun''s Galleri', '2011-12-20 10:00:00', '2011-12-20 20:00:00'),
-(2, 'Skattejagt', 'Storcenter Nord - Adresse', 'Storcenter Nord', 'Beskrivelse af Skattejagt eventet i Storcenter Nord', '2011-12-22 10:00:00', '2011-12-22 20:00:00');
+INSERT INTO `gj_events` (`id_event`, `name`, `place`, `organizer`, `description`, `start_time`, `end_time`, `zone_time`) VALUES
+(1, 'Gavejagt 2012', 'Bruun''s Galleri - M.P. Bruuns Gade 25, 8000 Aarhus C', 'Bruun''s Galleri', 'Beskrivelse af Gavejagt eventet i Bruun''s Galleri', '2012-01-04 10:00:00', '2012-01-11 12:40:00', 'Europe/Copenhagen'),
+(2, 'Skattejagt', 'Storcenter Nord - Adresse', 'Storcenter Nord', 'Beskrivelse af Skattejagt eventet i Storcenter Nord', '2011-12-22 10:00:00', '2011-12-22 20:00:00', 'Europe/Copenhagen'),
+(8, 'Lang tid til', 'fdghry', 'tnbgvfdwfghn', 'hngbvdcsdgbhjmk,æ-l.,kjhgbfv', '2012-03-14 12:00:00', '2012-03-16 15:00:00', 'Europe/Copenhagen');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gj_join_events_sponsors`
+-- Struktur-dump for tabellen `gj_join_events_sponsors`
 --
 
 CREATE TABLE IF NOT EXISTS `gj_join_events_sponsors` (
@@ -78,10 +80,10 @@ CREATE TABLE IF NOT EXISTS `gj_join_events_sponsors` (
   `value` int(11) DEFAULT NULL,
   `maxvalue` int(11) DEFAULT NULL,
   `qr_string` varchar(40) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `gj_join_events_sponsors`
+-- Data dump for tabellen `gj_join_events_sponsors`
 --
 
 INSERT INTO `gj_join_events_sponsors` (`id_sponsor`, `id_event`, `value`, `maxvalue`, `qr_string`) VALUES
@@ -89,12 +91,15 @@ INSERT INTO `gj_join_events_sponsors` (`id_sponsor`, `id_event`, `value`, `maxva
 (1, 2, 15, 15000, 'qr2'),
 (2, 1, 10, 5000, 'qr3'),
 (3, 1, 13, 20000, 'qr4'),
-(3, 2, 16, 12000, 'qr5');
+(3, 2, 16, 12000, 'qr5'),
+(4, 2, 16, 12000, 'qr6'),
+(2, 8, 10, 20000, 'placeholder QR Code'),
+(5, 8, 24, 23000, 'placeholder QR Code');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gj_join_events_users`
+-- Struktur-dump for tabellen `gj_join_events_users`
 --
 
 CREATE TABLE IF NOT EXISTS `gj_join_events_users` (
@@ -102,27 +107,28 @@ CREATE TABLE IF NOT EXISTS `gj_join_events_users` (
   `id_event` int(10) unsigned NOT NULL,
   `id_status` int(10) unsigned NOT NULL,
   `date` timestamp NULL DEFAULT NULL,
-  `qr_string` varchar(40) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `qr_string` varchar(40) DEFAULT NULL,
+  `value` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `gj_join_events_users`
+-- Data dump for tabellen `gj_join_events_users`
 --
 
-INSERT INTO `gj_join_events_users` (`id_user`, `id_event`, `id_status`, `date`, `qr_string`) VALUES
-(1, 1, 3, '2011-12-20 09:20:00', 'qr1'),
-(1, 2, 2, '2011-12-22 09:30:00', 'qr2'),
-(2, 1, 2, '2011-12-20 09:20:00', 'qr3'),
-(3, 2, 3, '2011-12-22 09:30:00', 'qr5'),
-(4, 1, 2, '2011-12-20 09:20:00', 'qr1'),
-(4, 2, 2, '2011-12-22 09:30:00', 'qr2'),
-(4, 1, 3, '2011-12-20 09:20:00', 'qr4'),
-(5, 1, 3, '2011-12-20 09:20:00', 'qr4');
+INSERT INTO `gj_join_events_users` (`id_user`, `id_event`, `id_status`, `date`, `qr_string`, `value`) VALUES
+(1, 1, 3, '2012-01-04 04:06:42', 'qr1', 20),
+(1, 2, 2, '2011-12-22 03:30:00', 'qr2', 0),
+(2, 1, 2, '2011-12-20 03:20:00', 'qr3', 0),
+(3, 2, 3, '2012-01-04 04:06:51', 'qr5', 16),
+(4, 1, 2, '2011-12-20 03:20:00', 'qr1', 0),
+(4, 2, 2, '2011-12-22 03:30:00', 'qr2', 0),
+(4, 1, 3, '2012-01-04 04:07:11', 'qr4', 13),
+(5, 1, 3, '2012-01-04 04:07:20', 'qr4', 13);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gj_sponsors`
+-- Struktur-dump for tabellen `gj_sponsors`
 --
 
 CREATE TABLE IF NOT EXISTS `gj_sponsors` (
@@ -132,31 +138,36 @@ CREATE TABLE IF NOT EXISTS `gj_sponsors` (
   `img_link` varchar(255) DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_sponsor`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
 
 --
--- Dumping data for table `gj_sponsors`
+-- Data dump for tabellen `gj_sponsors`
 --
 
 INSERT INTO `gj_sponsors` (`id_sponsor`, `name`, `description`, `img_link`, `url`) VALUES
-(1, 'BR', 'Legetøj', 'img_br.jpg', 'br.dk'),
-(2, 'Kvikly', 'Dagligvare', 'img_kvikly.jpg', 'kvikly.dk'),
-(3, 'Game Stop', 'Spil', 'img_gamestop.jpg', 'gamestop.jpg');
+(1, 'BR', 'Legetøj', 'img_br.jpg', 'www.br.dk'),
+(2, 'Kvikly', 'Dagligvare', 'img_kvikly.jpg', 'www.kvickly.dk'),
+(3, 'Game Stop', 'Spil', 'img_gamestop.jpg', 'gamestop.dk'),
+(4, 'Games', 'Spil', 'img_games.jpg', 'games.dk'),
+(5, 'Sponsor', 'Beskrivelse test', 'hwang_mi_hee_612.jpg', 'hjemmeside.dk'),
+(6, 'EN NY SPONSOR', 'BEKSRIVELÆSEFSDFSD', 'Wallpaper_Hwang_Mi_Hee_10_by_Przemyslav.jpg', 'HJEMMESIDE.DK'),
+(7, 'vsdfsdf', 'dsfsdfsdfdfsdf', '361055.jpg', 'dsfsdfsdf.dk'),
+(8, 'macron', 'Bla bla bla', 'Unknown.png', 'www.macron.dk');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gj_status`
+-- Struktur-dump for tabellen `gj_status`
 --
 
 CREATE TABLE IF NOT EXISTS `gj_status` (
   `id_status` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id_status`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Dumping data for table `gj_status`
+-- Data dump for tabellen `gj_status`
 --
 
 INSERT INTO `gj_status` (`id_status`, `title`) VALUES
@@ -167,7 +178,7 @@ INSERT INTO `gj_status` (`id_status`, `title`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gj_users`
+-- Struktur-dump for tabellen `gj_users`
 --
 
 CREATE TABLE IF NOT EXISTS `gj_users` (
@@ -177,10 +188,10 @@ CREATE TABLE IF NOT EXISTS `gj_users` (
   `phone` int(11) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_user`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
--- Dumping data for table `gj_users`
+-- Data dump for tabellen `gj_users`
 --
 
 INSERT INTO `gj_users` (`id_user`, `name`, `img_link`, `phone`, `email`) VALUES

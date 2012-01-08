@@ -319,49 +319,74 @@ class Admin extends CI_Controller
 ////////////////////////////////////////////////////////////////////////////////
 // Sponsor
 //	
-	public function show_sponsors($id = null)
+	public function show_sponsors($event_id = null)
 	{
 		//redirect to login if not logged in
 		$this->_is_logged_in();
 		
-		if (is_null($id))
-		{//no id provided, show all sponsors
+		if (is_null($event_id))
+		{//no event_id provided, show all sponsors
 			//set page title, headline and subheadline
-			$this->data['title'] = 'Adminpanel - Vis alle sponsorer';
-			$this->data['headline'] = 'Vis alle sponsorer';
-			$this->data['subheadline'] = 'oversigt over alle sponsorer for event';
+			$this->data['title']			= 'Adminpanel - Vis alle sponsorer';
+			$this->data['headline']			= 'Vis alle sponsorer';
+			$this->data['subheadline']		= 'oversigt over alle sponsorer for event';
 
+			//set the form action
+			$this->data['addnew_action']	= 'admin/new_sponsor';
+
+			//set text on submit btn
+			$this->data['addnew_text']		= 'Opret sponsor';
+			
 			//set breadcrumbs
-			$this->data['breadcrumbs'] = array('Adminpanel' => 'admin/adminpanel', 'Vis alle sponsorer' => 'admin/show_sponsors');
+			$this->data['breadcrumbs']		= array('Adminpanel' => 'admin/adminpanel', 'Vis alle sponsorer' => 'admin/show_sponsors');
 
 			//set activepage
-			$this->data['activep'] = 'show_sponsors';
+			$this->data['activep']			= 'show_sponsors';
+
+			//get all sponsors from db
+			$this->data['sponsors']			= $this->sponsor_model->get();
 			
-			//get all events from db
-			$this->data['sponsors'] = $this->sponsor_model->get();
+			if ($this->data['sponsors'] == null)
+			{
+				$this->data['sponsors']		= array();
+			}
 //			vd::dumpd($this->data['sponsors']);
 			
-			//Show the panel view
+			//Show the show sponsors view
 			$this->_view('pages/show_sponsors_view', $this->data);
 		}
 		else
-		{//id provided, show sponsors for event with id
+		{//event_id provided, show sponsors for event with id
+			//put info about event in the event var
+			$event							= $this->event_model->get($event_id);
+			
 			//set page title, headline and subheadline
-			$this->data['title'] = 'Adminpanel - _event - Vis sponsorer';
-			$this->data['headline'] = 'Vis sponsorer';
-			$this->data['subheadline'] = 'oversigt over sponsorer for event';
+			$this->data['title']			= 'Adminpanel - _event - Vis sponsorer';
+			$this->data['headline']			= 'Vis sponsorer';
+			$this->data['subheadline']		= 'oversigt over sponsorer for ' . $event->name;
 
+			//set the form action
+			$this->data['addnew_action']	= 'admin/add_sponsor/' . $event_id;
+
+			//set text on submit btn
+			$this->data['addnew_text']		= 'Tilføj sponsor';
+			
 			//set breadcrumbs
-			$this->data['breadcrumbs'] = array('Adminpanel' => 'admin/adminpanel', '_event' => 'admin/adminpanel', 'Vis sponsorer' => 'admin/show_sponsors');
+			$this->data['breadcrumbs']		= array('Adminpanel' => 'admin/adminpanel', $event->name => 'admin/show_sponsors/' . $event_id, 'Vis sponsorer' => 'admin/show_sponsors');
 
 			//set activepage
-			$this->data['activep'] = 'show_sponsors';
+			$this->data['activep']			= 'show_sponsors';
 			
-			//get all events from db
-			$this->data['sponsors'] = $this->sponsor_model->get($id);
-			vd::dumpd($this->data['sponsors']);
+			//get all sponsors from event from db
+			$this->data['sponsors']			= $this->sponsor_model->get(null, $event_id);
 			
-			//Show the panel view
+			if ($this->data['sponsors'] == null)
+			{
+				$this->data['sponsors']		= array();
+			}
+//			vd::dumpd($this->data['sponsors']);
+			
+			//Show the show sponsors view
 			$this->_view('pages/show_sponsors_view', $this->data);
 		}
 	}
@@ -372,21 +397,21 @@ class Admin extends CI_Controller
 		$this->_is_logged_in();
 		
 		//set page title, headline and subheadline
-		$this->data['title'] = 'Adminpanel - Ny sponsor';
-		$this->data['headline'] = 'Ny sponsor';
-		$this->data['subheadline'] = 'opret en ny sponsor';
+		$this->data['title']				= 'Adminpanel - Ny sponsor';
+		$this->data['headline']				= 'Ny sponsor';
+		$this->data['subheadline']			= 'opret en ny sponsor';
 
 		//set the form action
-		$this->data['action']     = 'admin/new_sponsor';
+		$this->data['action']				= 'admin/new_sponsor';
 
 		//set text on submit btn
-		$this->data['btn_action'] = 'Opret sponsor';
+		$this->data['btn_action']			= 'Opret sponsor';
 		
 		//set breadcrumbs
-		$this->data['breadcrumbs'] = array('Adminpanel' => 'admin/adminpanel', 'Ny sponsor' => 'admin/new_sponsor');
+		$this->data['breadcrumbs']			= array('Adminpanel' => 'admin/adminpanel', 'Ny sponsor' => 'admin/new_sponsor');
 
 		//set activepage
-		$this->data['activep'] = 'new_sponsor';
+		$this->data['activep']				= 'new_sponsor';
 		
 		//put form post data in variables
 		$name			= $this->input->post('sponsor_name');
@@ -439,21 +464,21 @@ class Admin extends CI_Controller
 		$this->_is_logged_in();
 		
 		//set page title, headline and subheadline
-		$this->data['title'] = 'Adminpanel - Rediger sponsor';
-		$this->data['headline'] = 'Rediger sponsor';
-		$this->data['subheadline'] = 'rediger en sponsor';
+		$this->data['title']				= 'Adminpanel - Rediger sponsor';
+		$this->data['headline']				= 'Rediger sponsor';
+		$this->data['subheadline']			= 'rediger en sponsor';
 
 		//set the form action
-		$this->data['action']     = 'admin/edit_sponsor/' . $id_sponsor;
+		$this->data['action']				= 'admin/edit_sponsor/' . $id_sponsor;
 
 		//set text on submit btn
-		$this->data['btn_action'] = 'Rediger sponsor';
+		$this->data['btn_action']			= 'Rediger sponsor';
 
 		//set breadcrumbs
-		$this->data['breadcrumbs'] = array('Adminpanel' => 'admin/adminpanel', 'Rediger sponsor' => 'admin/new_sponsor');
+		$this->data['breadcrumbs']			= array('Adminpanel' => 'admin/adminpanel', 'Rediger sponsor' => 'admin/new_sponsor');
 
 		//set activepage
-		$this->data['activep'] = 'new_sponsor';
+		$this->data['activep']				= 'new_sponsor';
 
 		//put form post data in variables
 		$name			= $this->input->post('sponsor_name');
@@ -511,24 +536,77 @@ class Admin extends CI_Controller
 		redirect('admin/show_sponsors', 'refresh');
 	}
 	
-	public function add_sponsor()
+	public function add_sponsor($event_id = null)
 	{
 		//redirect to login if not logged in
 		$this->_is_logged_in();
 		
+		//put info about event in the event var
+		$event							= $this->event_model->get($event_id);
+				
+		//get all sponsors from event
+		$this->data['sponsors']			= $this->sponsor_model->get();
+//		vd::dumpd($sponsors);
+		
 		//set page title, headline and subheadline
-		$this->data['title'] = 'Adminpanel - _event - Tilføj sponsor';
-		$this->data['headline'] = 'Tilføj sponsor';
-		$this->data['subheadline'] = 'tilføj en sponsor til event';
+		$this->data['title']			= 'Adminpanel - _event - Tilføj sponsor';
+		$this->data['headline']			= 'Tilføj sponsor';
+		$this->data['subheadline']		= 'tilføj en sponsor til ' . $event->name;
+		
+		//set the form action
+		$this->data['action']			= 'admin/add_sponsor/' . $event_id;
+
+		//set text on submit btn
+		$this->data['btn_action']		= 'Tilføj til "' . $event->name . '"';
 		
 		//set activepage
-		$this->data['activep'] = 'add_sponsor';
+		$this->data['activep']			= 'add_sponsor';
 		
 		//set breadcrumbs
-		$this->data['breadcrumbs'] = array('Adminpanel' => 'admin/adminpanel', '_event' => 'admin/adminpanel', 'Tilføj sponsor' => 'admin/add_sponsor');
+		$this->data['breadcrumbs']		= array('Adminpanel' => 'admin/adminpanel', $event->name => 'admin/show_sponsors/' . $event_id, 'Tilføj sponsor' => 'admin/add_sponsor');
+		
+		//put form post data in variables
+		$sponsor		= $this->input->post('sponsor');
+		$donation_piece	= $this->input->post('donation_piece');
+		$donation_max	= $this->input->post('donation_max');
 
-		//Show the panel view
-		$this->_view('pages/add_sponsor_view', $this->data);
+		//validate form input
+		$this->form_validation->set_rules('sponsor',		'Sponsor', 'required');
+		$this->form_validation->set_rules('donation_piece',	'Donation pr. scanning', 'required');
+		$this->form_validation->set_rules('donation_max',	'Donations loft', 'required');
+
+		//sets error message when the field validation fails
+		$this->form_validation->set_message('required', 'skal udfyldes');
+
+		//sets tags the error will be enclosed in
+		$this->form_validation->set_error_delimiters('<span class="help-inline">', '</span>');
+		
+		if ($this->form_validation->run() == true)
+		{//check to see if creating event
+			//vd::dumpd($_POST);
+			//adds the event to the db
+			$this->sponsor_model->addtoevent($event_id);
+			
+			//set flashdata, just in case
+			$this->session->set_flashdata('message', 'Ny sponsor tilføjet');
+			
+			//redirect them back to the show_sponsors page
+			redirect('admin/show_sponsors/'.$event_id, 'refresh');
+		}
+		else
+		{//is not creating event
+			//creates sponsor object array, and fill with null, so we don't get errors in view
+			$this->data['sponsor'] = (object)array(
+						'id_sponsor'	=> NULL,
+						'donation_piece'=> NULL,
+						'donation_max'	=> NULL
+			);
+			
+			$this->data['event_id'] = $event_id;
+			
+			//Show the add sponsor view
+			$this->_view('pages/add_sponsor_view', $this->data);
+		}
 	}
 	
 	

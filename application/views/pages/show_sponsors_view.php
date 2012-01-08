@@ -1,6 +1,6 @@
 <div class="well">
 	<ul class="toolbar">
-		<li><?php echo anchor('admin/new_sponsor', '<img src="'. base_url() .'images/icons/add.png" height="16" width="16" /> Opret sponsor', array('class' => 'btn success')) ?></li>
+		<li><?php echo anchor($addnew_action, '<img src="'. base_url() .'images/icons/add.png" height="16" width="16" /> '.$addnew_text, array('class' => 'btn success')) ?></li>
 	</ul><!-- /toolbar -->
 </div><!-- /well -->
 
@@ -40,19 +40,23 @@
 				<div><span class="label">Beskrivelse:</span></div>
 				<span><?php echo $key['description'] ?></span>
 			</div>
-<!--			<div class="infolist">
-				<div><span class="label">Donation pr. pakke:</span></div>
-				<span><?php echo $key['value'] ?> kr</span>
+			
+			<?php if ($key['value']): ?>
+				<div class="infolist">
+					<div><span class="label">Donation pr. pakke:</span></div>
+					<span><?php echo $key['value'] ?> kr</span>
 
-				<div><span class="label">Pakker doneret:</span></div>
-				<span><?php echo $key['donation_count'] ?> stk</span>
-				
-				<div><span class="label">Donation ialt:</span></div>
-				<span><?php echo $key['donation_sum'] ?> kr</span>
-				
-				<div><span class="label">Donations loft:</span></div>
-				<span><?php echo $key['maxvalue'] ?> kr</span>
-			</div>-->
+					<div><span class="label">Pakker doneret:</span></div>
+					<span><?php //echo $key['donation_count'] ?> stk</span>
+
+					<div><span class="label">Donation ialt:</span></div>
+					<span><?php //echo $key['donation_sum'] ?> kr</span>
+
+					<div><span class="label">Donations loft:</span></div>
+					<span><?php echo $key['maxvalue'] ?> kr</span>
+				</div>
+			<?php endif; ?>
+			
 			<div style="clear:both;"></div>
 			
 		</div>
